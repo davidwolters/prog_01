@@ -1,13 +1,3 @@
-
-def test_get_sequence_length():
-    numbers = {6: 9, 5: 6, 1: 1, 100: 26}
-
-    for number in numbers:
-        res = get_sequence_length(number)
-        corr = numbers[number]
-        is_correct = "correct" if res == corr else "error"
-        print(f"Expected len {corr}, got {res}, {is_correct}")
-
 def test_get_sequence_length():
     sl_6 = get_sequence_length(6)
     sl_5 = get_sequence_length(5)

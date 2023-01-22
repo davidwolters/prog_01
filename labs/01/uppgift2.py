@@ -6,7 +6,9 @@ def test_print_sequence():
     print_sequence(100)
 
 def next_in_sequence(n: int):
-    return n // 2 if n % 2 == 0 else (n * 3) + 1
+    if n % 2 == 0:
+        return n // 2
+    return (n * 3) + 1
 
 def print_sequence(n: int):
     while n > 1:
