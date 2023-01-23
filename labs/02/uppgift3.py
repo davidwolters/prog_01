@@ -1,6 +1,9 @@
 import random
 import time
 
+
+
+
 def bytintill(list):
     swapped = False
     for i in range(0, max(0, len(list) - 1)):
@@ -8,7 +11,6 @@ def bytintill(list):
             list[i], list[i+1] = list[i+1], list[i] 
             swapped = True
     return swapped
-
 
 def bubblesort(list):
     sorted_list = list.copy()

@@ -1,16 +1,11 @@
-# def get_initials(name):
-#    return '.'.join([i[0].capitalize() for i in name.replace("-", " ").split(" ")]) + '.' if name else ''
 
 def get_initials(full_name):
     alpha_name = full_name.replace("-", " ")
-    names = alpha_name.split(" ")
+    names = alpha_name.rsplit()
     initials = ""
     for name in names:
-        if not name: continue
         initials += name[0].capitalize() + "."
     return initials
-
-
 
 
 def test_get_initials():
