@@ -1,6 +1,6 @@
 from uppgift4 import get_sequence_length
 
-def get_max_seq_len():
+def print_max_seq_len():
     max_at = 0
     max_len = 0
     i = 1
@@ -15,4 +15,4 @@ def get_max_seq_len():
 
 
 if __name__ == '__main__':
-    get_max_seq_len()
+    print_max_seq_len()
