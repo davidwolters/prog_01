@@ -1,3 +1,5 @@
+from uppgift2 import next_in_sequence
+
 def test_get_sequence_length():
     sl_6 = get_sequence_length(6)
     sl_5 = get_sequence_length(5)
@@ -15,13 +17,6 @@ def test_get_sequence_length():
 
     if sl_100 == 26: print("sl(100) = 26, passed")
     else: print("sl(100) = 26, failed, got", sl_100)
-
-
-
-
-def next_in_sequence(n: int):
-    return n // 2 if n % 2 == 0 else (n * 3) + 1
-
 
 def get_sequence_length(n: int):
     seq_len = 1
