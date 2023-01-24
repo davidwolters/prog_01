@@ -22,7 +22,6 @@ def get_digit_sum(number: int):
     while number > 0:
         remainder = number % 10 # resten när man delar talet med 20 (1004 -> 4)
         sum = sum +  remainder # lägg till den på summan
-        number = number - remainder # ta bort resten från talet, 1004 - 4 -> 1000
         number = number // 10 # // är division med heltal som resultat 
     return sum
 
