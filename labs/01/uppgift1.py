@@ -21,7 +21,7 @@ def get_digit_sum(number: int):
     sum = 0
     while number > 0:
         remainder = number % 10 
-        sum = sum +  remainder 
+        sum = sum + remainder 
         number = number // 10
     return sum
 
