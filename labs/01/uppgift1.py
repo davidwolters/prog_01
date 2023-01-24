@@ -20,9 +20,9 @@ def test_get_digit_sum():
 def get_digit_sum(number: int):
     sum = 0
     while number > 0:
-        remainder = number % 10 # resten när man delar talet med 20 (1004 -> 4)
-        sum = sum +  remainder # lägg till den på summan
-        number = number // 10 # // är division med heltal som resultat 
+        remainder = number % 10 
+        sum = sum +  remainder 
+        number = number // 10
     return sum
 
 if __name__ == '__main__':
