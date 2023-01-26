@@ -10,6 +10,6 @@ Följ länkarna till labbarna här. Om på mobil, tryck på "View Code" för att
 - [python](https://github.com/davidwolters/prog_01/tree/python)
     - [/labs](https://github.com/davidwolters/prog_01/tree/python/labs) (mapp med labbar)
         - [Labb 1: Pythonkramning](https://github.com/davidwolters/prog_01/tree/python/labs/01)
-        - [Labb 2: Loopar & Listor](https://github.com/davidwolters/prog_01/tree/python/labs/01)
-        - [Labb 3: Texter](https://github.com/davidwolters/prog_01/tree/python/labs/01)
+        - [Labb 2: Loopar & Listor](https://github.com/davidwolters/prog_01/tree/python/labs/02)
+        - [Labb 3: Texter](https://github.com/davidwolters/prog_01/tree/python/labs/03)
 
