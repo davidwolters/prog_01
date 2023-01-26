@@ -16,3 +16,4 @@ def print_max_seq_len():
 
 if __name__ == '__main__':
     print_max_seq_len()
+
