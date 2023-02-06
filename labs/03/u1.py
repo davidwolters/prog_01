@@ -1,5 +1,7 @@
-
-def get_file_contents(file_name):
+def get_file_contents(file_name: str) -> str:
+    """Open a file via realtive filepath, and retreive its contents.
+    If any error occurrs, it is caught and nog propagated, empty string is returned.
+    """
     try:
         file = open(file_name)
         contents = file.read()
@@ -10,39 +12,39 @@ def get_file_contents(file_name):
         return ""
 
 
-def lowercase(string: str):
+def lowercase(string: str) -> str:
     return string.lower()
 
 
-def get_words(string: str):
+def get_words(string: str) -> list[str]:
     return string.rsplit()
 
 
-def get_alpha(string: str):
+def get_alpha(string: str) -> str:
+    """Return a string wiith only alpha-chars, whitespcaes and newlines. """
     a = ''
     for char in string:
         if char.isalpha() or char == ' ' or char == "\n":
             a += char if char != "\n" else ' '
     return a
-    # return ''.join(filter(lambda s: s.isalpha() or s == ' ', string))
 
-
-def get_num_words(list):
+def get_num_words(list: list[str]) -> int:
     return len(list)
 
 
-def list_to_dict(list: list):
+def list_to_dict(list: list[str]) -> dict[str, int]:
+    """Returns a dictionary containing each word and # occurences in list."""
     dict = {}
     for word in list:
         dict[word] = dict[word] + 1 if word in dict else 1
     return dict
 
 
-def get_num_unique_words(words: dict):
+def get_num_unique_words(words: dict[str, int]) -> int:
     return len(words)
 
 
-def get_most_freq_word(words: dict):
+def get_most_freq_word(words: dict[str, int]) -> (str, int):
     max_freq = 0
     max_word = ''
     for word in words:
@@ -52,7 +54,14 @@ def get_most_freq_word(words: dict):
     return (max_word, max_freq)
 
 
-def solve(file):
+def solve(file: str) -> dict:
+    """Reads a file and returns information regarding its contents.
+    Returns:
+        - Number of words
+        - Number of unique words (shift-case and punctuation is ignored)
+        - Number of occurrences of most frequent word 
+        - Most frequent word
+    """
     text = get_file_contents(file)
     words = get_words(lowercase(get_alpha(text)))
     word_dict = list_to_dict(words)

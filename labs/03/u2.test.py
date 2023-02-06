@@ -1,6 +1,7 @@
 from lib import single_param_test, func_result_test
-from uppgift2 import get_text_from_successors, get_word_successors, get_successors_from_text, get_successor_text
-import uppgift1 as u
+from u2 import get_text_from_successors, get_word_successors, get_successors_from_text, get_successor_text
+import random as r
+import u1 as u
 
 
 def test_get_word_successors():
@@ -36,21 +37,21 @@ def test_get_successors_from_text():
 
 
 def get_texts():
-    return {f"test{i}.txt": u.get_file_contents(f"texts/test{i}.txt") for i in range(1, 5)}
+    return {f"test{i}.txt": (u.get_file_contents(f"texts/test{i}.txt"), r.randint(1, 3)) for i in range(1, 5)}
 
 
 def test_get_text_from_successors():
     print("\n==== TESTING get_text_from_successors() ====")
-    for file, content in get_texts().items():
-        print(f"\n\t#### TEXT: {file} ####\n\t", end='')
-        print(get_text_from_successors(get_successors_from_text(content, 2), 40))
+    for file, (content, n) in get_texts().items():
+        print(f"\n\t#### TEXT: {file}, n={n} ####\n\t", end='')
+        print(get_text_from_successors(get_successors_from_text(content, n), 40))
 
 
 def test_get_successor_text():
     print("\n==== TESTING get_successor_text() ====")
-    for file, content in get_texts().items():
-        print(f"\n\t#### TEXT: {file} ####\n\t", end='')
-        print(get_successor_text(content, 40, 3))
+    for file, (content, n) in get_texts().items():
+        print(f"\n\t#### TEXT: {file}, n={n} ####\n\t", end='')
+        print(get_successor_text(content, 40, n))
 
 
 if __name__ == '__main__':

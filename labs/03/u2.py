@@ -1,8 +1,9 @@
 import random as r
-from uppgift1 import get_words, lowercase, get_alpha
+from u1 import get_words, lowercase, get_alpha
 
 
-def get_word_successors(words: list, n: int):
+def get_word_successors(words: list[str], n: int) -> dict[tuple[str, ...], list[str]]:
+    """Returns a dict keyed with a tuple of n succeeding words mapped to possible successors to those words in the text."""
     dict = {}
     for i in range(len(words) - n):
         word_tuple = tuple(words[i:i+n])
@@ -14,11 +15,11 @@ def get_word_successors(words: list, n: int):
     return dict
 
 
-def get_successors_from_text(text: str, n: int):
+def get_successors_from_text(text: str, n: int) -> dict[tuple[str, ...], list[str]]:
     return get_word_successors(get_words(lowercase(get_alpha(text))), n)
 
-
-def get_text_from_successors(words: dict, num_words: int):
+def get_text_from_successors(words: dict[tuple[str, ...], list[str]], num_words: int):
+    """Generates a text where each word is one of the possible successors to the last n words in the text, where n is length of tuples in words"""
     keys = list(words)
     text = list(r.choice(keys))
     for _ in range(1, num_words - 1):
@@ -29,5 +30,5 @@ def get_text_from_successors(words: dict, num_words: int):
     return ' '.join(text)
 
 
-def get_successor_text(text: str, num_words: int, n: int):
+def get_successor_text(text: str, num_words: int, n: int) -> str:
     return get_text_from_successors(get_successors_from_text(text, n), num_words)

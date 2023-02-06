@@ -1,4 +1,4 @@
-import uppgift1 as u
+import u1 as u
 from lib import single_param_test
 
 
