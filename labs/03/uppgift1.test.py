@@ -5,15 +5,21 @@ from lib import single_param_test
 def test_get_file_contents():
     single_param_test(
         "get_file_contents",
-        ["texts/test_get_file_contents.txt"],
-        ["hello"],
+        [
+            "texts/test_get_file_contents_0.txt",
+            "texts/test_get_file_contents_1.txt",
+            "texts/test_get_file_contents_2.txt",
+            "texts/test_get_file_contents_3.txt",
+            "texts/test_get_file_contents_4.txt",
+        ],
+        ['hello there', '1 2 3 4', '', '\n', 'this is a text'],
         u.get_file_contents
     )
 
 
 def test_lowercase():
     single_param_test(
-        "lowercase", ['ASDF', '**', ''], ['asdf', '**', ''], u.lowercase
+        "lowercase", ['ASDF', '**', '', 'a', 'Ö'], ['asdf', '**', '', 'a', 'ö'], u.lowercase
     )
 
 

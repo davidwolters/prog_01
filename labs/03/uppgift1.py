@@ -1,5 +1,3 @@
-import os
-
 
 def get_file_contents(file_name):
     try:

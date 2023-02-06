@@ -16,4 +16,4 @@ def func_result_test(name: str, input: list, expected: list, func):
             print(f"{OK_START}Test {i+1} passed.\n\t{input[i]} => {res}{END}")
         else:
             print(
-                f"{ERR_START}Test {i+1} failed.\n\tExpected\t{corr}\n\tgot\t\t{res}{END}")
+                f"{ERR_START}Test {i+1} failed ({input[i]}).\n\tExpected\t\'{corr}\'\n\tgot\t\t\'{res}\'{END}")
