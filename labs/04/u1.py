@@ -15,7 +15,7 @@ def possible_email(str: str):
     return (
         str.replace('.', '').replace('@', '').isalpha() and
         str.count('@') <= 1
-    )
+    ) or str == ''
 
 
 def is_email(str: str):

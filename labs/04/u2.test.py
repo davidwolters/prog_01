@@ -1,5 +1,4 @@
-from u2 import _all_links, print_links_from_url
-
+import u2
 
 def test_get_all_links():
     links = ['https://www.wolters.se',
