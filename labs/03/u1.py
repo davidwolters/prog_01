@@ -1,6 +1,6 @@
 def get_file_contents(file_name: str) -> str:
     """Open a file via realtive filepath, and retreive its contents.
-    If any error occurrs, it is caught and nog propagated, empty string is returned.
+    If any error occurrs, it is caught and not propagated, empty string is returned.
     """
     try:
         file = open(file_name)
@@ -19,14 +19,13 @@ def lowercase(string: str) -> str:
 def get_words(string: str) -> list[str]:
     return string.rsplit()
 
-
 def get_alpha(string: str) -> str:
-    """Return a string wiith only alpha-chars, whitespcaes and newlines. """
-    a = ''
+    """Return a string with only alpha-chars, whitespaces and newlines. """
+    alpha_str = ''
     for char in string:
         if char.isalpha() or char == ' ' or char == "\n":
-            a += char if char != "\n" else ' '
-    return a
+            alpha_str += char if char != "\n" else ' '
+    return alpha_str
 
 def get_num_words(list: list[str]) -> int:
     return len(list)
@@ -43,8 +42,7 @@ def list_to_dict(list: list[str]) -> dict[str, int]:
 def get_num_unique_words(words: dict[str, int]) -> int:
     return len(words)
 
-
-def get_most_freq_word(words: dict[str, int]) -> (str, int):
+def get_most_freq_word(words: dict[str, int]) -> tuple[str, int]:
     max_freq = 0
     max_word = ''
     for word in words:
@@ -52,7 +50,6 @@ def get_most_freq_word(words: dict[str, int]) -> (str, int):
             max_freq = words[word]
             max_word = word
     return (max_word, max_freq)
-
 
 def solve(file: str) -> dict:
     """Reads a file and returns information regarding its contents.

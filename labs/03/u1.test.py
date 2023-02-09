@@ -1,7 +1,6 @@
 import u1 as u
 from lib import single_param_test
 
-
 def test_get_file_contents():
     single_param_test(
         "get_file_contents",
@@ -53,8 +52,8 @@ def test_get_num_words():
 def test_list_to_dict():
     single_param_test(
         "list_to_dict",
-        [['a', 'a'], ['a', 'b', 'c'], []],
-        [{'a': 2}, {'a': 1, 'b': 1, 'c': 1}, {}],
+        [['a', 'a'], ['a', 'b', 'c'], [], ['hej']],
+        [{'a': 2}, {'a': 1, 'b': 1, 'c': 1}, {}, {'hej': 1}],
         u.list_to_dict
     )
 

@@ -1,34 +1,45 @@
 import random as r
-from u1 import get_words, lowercase, get_alpha
+from u1 import get_words, lowercase, get_alpha, list_to_dict, get_most_freq_word
 
-
-def get_word_successors(words: list[str], n: int) -> dict[tuple[str, ...], list[str]]:
-    """Returns a dict keyed with a tuple of n succeeding words mapped to possible successors to those words in the text."""
+def get_following_words(words: list[str]) -> dict[str, list[str]]:
     dict = {}
-    for i in range(len(words) - n):
-        word_tuple = tuple(words[i:i+n])
-        dict[word_tuple] = (
-            dict[word_tuple] + [words[i+n]]
-            if word_tuple in dict
-            else [words[i+n]]
-        )
+
+    for i in range(len(words) - 1):
+        current_word = words[i]
+        next_word = words[i+1]
+        if current_word in dict:
+            dict[current_word].append(next_word)
+        else:
+            dict[current_word] = [next_word]
     return dict
 
+def get_most_frequent_follower(words: dict[str, list[str]]):
+    max_len = 0
+    max_word = ''
+    for word in words:
+        if len(words[word]) > max_len:
+            max_len = len(words[word])
+            max_word = words[word]
+            
+    max_follow_word, max_follow_freq = get_most_freq_word(list_to_dict(words[word]))
+    return (max_word, max_len, max_follow_word, max_follow_freq)
 
-def get_successors_from_text(text: str, n: int) -> dict[tuple[str, ...], list[str]]:
-    return get_word_successors(get_words(lowercase(get_alpha(text))), n)
-
-def get_text_from_successors(words: dict[tuple[str, ...], list[str]], num_words: int):
-    """Generates a text where each word is one of the possible successors to the last n words in the text, where n is length of tuples in words"""
-    keys = list(words)
-    text = list(r.choice(keys))
-    for _ in range(1, num_words - 1):
-        key = tuple(text[-len(keys[0]):])
-        if not key in keys:
-            break
-        text.append(r.choice(words[key]))
+def get_text_from_following_words(words: dict[str, list[str]], num_words: int) -> str:
+    """Uppgift 3. Generar en slumpmässig text där varje ord följs av ett ord som i texten följer ordet."""
+    text = []
+    while len(text) < num_words:
+        text = [r.choice(list(words))]
+        for _ in range(num_words - 1):
+            key = text[-1]
+            if not key in words:
+                break
+            text.append(r.choice(words[key]))
     return ' '.join(text)
 
 
-def get_successor_text(text: str, num_words: int, n: int) -> str:
-    return get_text_from_successors(get_successors_from_text(text, n), num_words)
+def get_following_words_from_text(text: str) -> dict[str, list[str]]:
+    return get_following_words(get_words(text))
+
+def get_random_following_text(text: str, num_words: int):
+    following_words = get_following_words_from_text(text)
+    return get_text_from_following_words(following_words, num_words)
