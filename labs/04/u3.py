@@ -6,33 +6,46 @@ import socket
 
 
 def is_url(str: str) -> bool:
-    return not (str.startswith('mailto:') or str.startswith('tel:'))
+    return str.startswith('http') or str.startswith('/') or str.startswith('www')
 
 
-def is_abs(str: str) -> bool:
+def is_url_absolute(str: str) -> bool:
     return str.startswith('http:') or str.startswith('https:')
 
 
-def get_full_urls(urlbase: str, text: str) -> set[str]:
+def get_absolute_url(urlbase: str, url: str) -> str:
+    if is_url_absolute(url):
+        return url
+    return urljoin(urlbase, url)
+
+
+def get_full_urls(urlbase: str, content: str) -> set[str]:
     urls = set()
-    for url in get_all_links(text):
+    for url in get_all_links(content):
         if not is_url(url):
             continue
-        urls.add(
-            url if is_abs(url) else urljoin(urlbase, url)
-        )
+        urls.add(get_absolute_url(urlbase, url))
     return urls
 
 
-def get_dead_urls(urls: set[str]) -> set[str]:
+def is_url_dead(url: str) -> bool:
     socket.setdefaulttimeout(3)
+    try:
+        urlopen(url)
+    except:
+        return True
+    return False
+
+
+def print_dead_urls(urls: set[str]) -> set[str]:
     dead_urls = set()
     for url in urls:
+
         print(f"Checking {url} [...]", end="\t")
-        try:
-            urlopen(url)
-            ok_print("Success")
-        except:
-            err_print("Error")
+        if not is_url_dead(url):
+            ok_print('Alive')
+        else:
             dead_urls.add(url)
+            err_print('Dead')
+
     return dead_urls

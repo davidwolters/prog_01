@@ -42,9 +42,10 @@ def test_get_url_content():
     )
     func_result_test(
         'get_url_content',
-        [['https://dummy.restapiexample.com/api/v1/employee/10000']],
-        ['{"status":"success","data":null,"message":"Successfully! Record has been fetched."}'],
-        u1.get_url_content
+        [['https://uu.se']],
+        ['Sveriges första universitet'],
+        u1.get_url_content,
+        validate=lambda res,exp: exp in res 
     )
 
 if __name__ == '__main__':
@@ -53,4 +54,4 @@ if __name__ == '__main__':
     test_find_all_emails()
     test_get_url_content()
     print("\n==== TESTING print_emails_from_url() ====")
-    u1.print_emails_from_url('')
+    u1.print_emails_from_url('http://www.it.uu.se/katalog/bylastname')
