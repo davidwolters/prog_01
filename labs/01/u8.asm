@@ -1,7 +1,6 @@
 
 .data
 base: .space 40
-comma: .asciiz ", "
 
 .text
 
