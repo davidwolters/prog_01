@@ -14,5 +14,5 @@ Följ länkarna till labbarna här. Om på mobil, tryck på "View Code" för att
     - [Labb 4: Internetsökning](https://github.com/davidwolters/prog_01/tree/python/labs/04)
 - [java](https://github.com/davidwollters/prog_01/tree/java)
   - [/labs](https://github.com/davidwolters/prog_01/tree/java/labs) (mapp med labbar)
-  - [Labb 1: Intro](https://github.com/davidwolters/prog_01/tree/java/labs/lab-01)
+    - [Labb 1: Intro](https://github.com/davidwolters/prog_01/tree/java/labs/lab-01)
 - [MIPS](https://github.com/davidwolters/prog_01/tree/mips)
