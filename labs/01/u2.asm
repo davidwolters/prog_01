@@ -1,4 +1,13 @@
 
+###############################################################
+#         						 	 	 	 	 			  #
+#  Ett program som läser in två tal och skriver ut A^2 + B^2  #
+#         						 	 	 	 	 			  #
+#                   Registerallokering:						  #
+# $s0										int num_1		  #
+# $v0										int num_2		  #										
+###############################################################
+
 
 .data
 inst_1: .asciiz "Enter first number (A):\n> "
@@ -15,7 +24,7 @@ la $a0, inst_1
 syscall
 
 
-#first = int(input())
+# num_1 = int(input())
 li $v0, 5
 syscall
 move $s0, $v0
@@ -25,14 +34,14 @@ li $v0, 4
 la $a0, inst_2
 syscall
 
-# second = int(input))
+# num_2 = int(input))
 li $v0, 5
 syscall
 
-# first = first*first + second*second
+# num_1 = num_1*num_1 + num_2*num_2
 mul $s0, $s0, $s0
-mul $s1, $v0, $v0
-add $s0, $s0, $s1
+mul $v0, $v0, $v0
+add $s0, $s0, $v0
 
 
 # print(res)
@@ -40,7 +49,7 @@ li $v0, 4
 la $a0, res
 syscall
 
-# print (first)
+# print(num_1)
 li $v0,1
 move $a0, $s0
 syscall

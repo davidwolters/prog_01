@@ -1,4 +1,26 @@
 
+###############################################################
+#         						 	 	 	 	 			  #
+# Ett program som läser in 3 tal och skriver ut det största   #
+# utan att använda några branches						      #
+#         						 	 	 	 	 			  #
+#                   Registerallokering:						  #
+# $s0										int a			  #
+# $s1										int b			  #
+# $v0										int c			  #
+# $s5										int max			  #
+# $s5										bool AB (a > b)	  #
+# $s6										bool AC (a > c)	  #
+# $s7										bool BC (b > c)	  #
+# $s7										bool BC (b > c)	  #
+# $t0										bool BA (a > b)	  #
+# $t1										int tmp			  #
+# $t2										bool CB (c > b)	  #
+# $t3										bool CA (c > a)	  #
+# $t7										int 1			  #
+###############################################################
+
+
 
 .data
 inst: .asciiz "\nEnter a number:\n> "
@@ -35,17 +57,17 @@ syscall
 # c = int(input)
 li $v0, 5
 syscall
-move $s2, $v0
+
 
 sgt $s5, $s0, $s1	# AB = int(a > b)
-sgt $s6, $s0, $s2	# AC = int(a > c)
-sgt $s7, $s1, $s2	# BC = int(b > c)
+sgt $s6, $s0, $v0	# AC = int(a > c)
+sgt $s7, $s1, $v0	# BC = int(b > c)
 
 ## each multiplication will evaluate to 0 if number is not largest, so either:
 # a + 0 + 0 or
 # 0 + b + 0 or
 # 0 + 0 + c
-# technically more effecient than doing jumps, as ASM does not need to precompute branches
+# theoretically more effecient than doing jumps, as ASM does not need to precompute branches
 # max = a*AB*AC + b*(1-AB)*BC + c*(1-AC)*(1-BC)
 mul $s4,$s0,$s5		# max = a * AB
 mul $s4,$s4,$s6		# max = a * AC
@@ -59,7 +81,7 @@ add $s4, $s4, $t1	# max = res + tmp
 
 sub $t2, $t7, $s7	# CB = 1 - BC
 sub $t3, $t7, $s6	# CA = 1 - AC
-mul $t1, $s2, $t2	# tmp = b * CB
+mul $t1, $v0, $t2	# tmp = b * CB
 mul $t1, $t1, $t3	# tmp = b * CA
 add $s4, $s4, $t1	# max = res + tmp
 
