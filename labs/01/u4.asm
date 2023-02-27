@@ -1,101 +1,99 @@
 
 ###############################################################
 #         						 	 	 	 	 			  #
-# Ett program som läser in 3 tal och skriver ut det största   #
-# utan att använda några branches						      #
+#  Ett program som läser in 3 tal och skriver ut det största  #
 #         						 	 	 	 	 			  #
 #                   Registerallokering:						  #
-# $s0										int a			  #
+# $s0										int a (also max)  #
 # $s1										int b			  #
 # $v0										int c			  #
-# $s4										int max			  #
-# $s5										bool AB (a > b)	  #
-# $s6										bool AC (a > c)	  #
-# $s7										bool BC (b > c)	  #
-# $s7										bool BC (b > c)	  #
-# $t0										bool BA (a > b)	  #
-# $t1										int tmp			  #
-# $t2										bool CB (c > b)	  #
-# $t3										bool CA (c > a)	  #
-# $t7										int 1			  #
 ###############################################################
+
 
 
 
 .data
 inst: .asciiz "\nEnter a number:\n> "
-res: .asciiz "The greatest number is: "
-one: .word 1
+res: .asciiz "\nThe greatest number is: "
+
+
 
 .text
 
-main:
+
 # print(inst)
 li $v0, 4
 la $a0, inst
 syscall
 
-# a = int(input)
+# a = int(input())
 li $v0, 5
 syscall
 move $s0, $v0
 
+
 # print(inst)
 li $v0, 4
+la $a0, inst
 syscall
 
-# b = int(input)
+# b = int(input())
 li $v0, 5
 syscall
 move $s1, $v0
 
+
 # print(inst)
 li $v0, 4
+la $a0, inst
 syscall
 
-
-# c = int(input)
+# c = int(inpput())
 li $v0, 5
 syscall
 
+	# if a > b: a_gt_b()
+	bge $s0, $s1, a_gt_b
+after_a_gt_b:
+	# elif b > a: check_b()
+	bge $s1, $s0, b_gt_a
+after_b_gt_a:
 
-sgt $s5, $s0, $s1	# AB = int(a > b)
-sgt $s6, $s0, $v0	# AC = int(a > c)
-sgt $s7, $s1, $v0	# BC = int(b > c)
-
-## each multiplication will evaluate to 0 if number is not largest, so either:
-# a + 0 + 0 or
-# 0 + b + 0 or
-# 0 + 0 + c
-# theoretically more effecient than doing jumps, as ASM does not need to precompute branches
-
-
-# max = (a*AB*AC) + (b*(1-AB)*BC) + (c*(1-AC)*(1-BC))
-mul $s4,$s0,$s5		# max = a * AB
-mul $s4,$s4,$s6		# max *= AC
+	# else:
+	#     a = c
+	#     print_res()
+	move $s0, $v0
+	j print_res
 
 
-li $t7, 1
+a_gt_b:
+	# if a > c:
+	#    print_res()
+	bge $s0, $v0, print_res
+	j after_a_gt_b
 
-sub $t0, $t7, $s5	# BA = 1 - AB
 
-mul $t1, $s1, $t0	# tmp = b*BA
-mul $t1, $t1, $s7	# tmp = tmp*BC
-add $s4, $s4, $t1	# max = max + tmp
+b_gt_a:
+	# if b > c:
+	#    b_gt()
+	bge $s1, $v0, b_gt
+	j after_b_gt_a
 
-sub $t2, $t7, $s7	# CB = 1 - BC
-sub $t3, $t7, $s6	# CA = 1 - AC
+b_gt:
+	# a = b
+	move $s0, $s1
 
-mul $t1, $v0, $t2	# tmp = c * CB
-mul $t1, $t1, $t3	# tmp = c * CA
-add $s4, $s4, $t1	# max = res + tmp
+	# print_res()
+	j print_res
 
-# print(res)
-li $v0, 4
-la $a0, res
-syscall
 
-# print(max)
-li $v0, 1
-move $a0, $s4
-syscall
+print_res:
+	# print(res)
+	li $v0, 4
+	la $a0, res
+	syscall
+
+	# print(a)
+	li $v0, 1
+	move $a0, $s0
+	syscall
