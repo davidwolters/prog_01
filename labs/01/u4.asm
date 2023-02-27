@@ -8,7 +8,7 @@
 # $s0										int a			  #
 # $s1										int b			  #
 # $v0										int c			  #
-# $s5										int max			  #
+# $s4										int max			  #
 # $s5										bool AB (a > b)	  #
 # $s6										bool AC (a > c)	  #
 # $s7										bool BC (b > c)	  #
@@ -68,21 +68,26 @@ sgt $s7, $s1, $v0	# BC = int(b > c)
 # 0 + b + 0 or
 # 0 + 0 + c
 # theoretically more effecient than doing jumps, as ASM does not need to precompute branches
-# max = a*AB*AC + b*(1-AB)*BC + c*(1-AC)*(1-BC)
+
+
+# max = (a*AB*AC) + (b*(1-AB)*BC) + (c*(1-AC)*(1-BC))
 mul $s4,$s0,$s5		# max = a * AB
-mul $s4,$s4,$s6		# max = a * AC
+mul $s4,$s4,$s6		# max *= AC
 
 
 li $t7, 1
+
 sub $t0, $t7, $s5	# BA = 1 - AB
+
 mul $t1, $s1, $t0	# tmp = b*BA
 mul $t1, $t1, $s7	# tmp = tmp*BC
-add $s4, $s4, $t1	# max = res + tmp
+add $s4, $s4, $t1	# max = max + tmp
 
 sub $t2, $t7, $s7	# CB = 1 - BC
 sub $t3, $t7, $s6	# CA = 1 - AC
-mul $t1, $v0, $t2	# tmp = b * CB
-mul $t1, $t1, $t3	# tmp = b * CA
+
+mul $t1, $v0, $t2	# tmp = c * CB
+mul $t1, $t1, $t3	# tmp = c * CA
 add $s4, $s4, $t1	# max = res + tmp
 
 # print(res)

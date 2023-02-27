@@ -11,7 +11,7 @@
 .data
 inst_1: .asciiz "Enter first number\n> "
 inst_2: .asciiz "\nEnter second number\n> "
-res: .asciiz "\nResult is: "
+res: .asciiz "\Average is: "
 
 .text
 main:
@@ -47,7 +47,7 @@ la $a0, res
 syscall
 
 # print(num_1)
-li $v0, 1 
+li $v0, 1
 move $a0, $s0
 syscall
 

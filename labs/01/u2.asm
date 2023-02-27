@@ -43,13 +43,12 @@ mul $s0, $s0, $s0
 mul $v0, $v0, $v0
 add $s0, $s0, $v0
 
-
 # print(res)
 li $v0, 4
 la $a0, res
 syscall
 
 # print(num_1)
-li $v0,1
+li $v0, 1
 move $a0, $s0
 syscall

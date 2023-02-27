@@ -1,19 +1,35 @@
 
+###############################################################
+#         						 	 	 	 	 			  #
+#  Ett program som läser in en serie tal och skriver ut 	  #
+#  talserien baklänges.										  #
+#         						 	 	 	 	 			  #
+#                   Registerallokering:						  #
+# $v0										int newnum		  #
+# $s0										int addr		  #
+# $s1										int count		  #
+###############################################################
+
+
 .data
 base: .space 40
 comma: .asciiz ", "
+inst: .asciiz "\nEnter a number (0 to exit)\n> "
 
 .text
 
 main:
 	# addr = base
 	la $s0, base
-	
-	# count = 0
-	li $s1, 0
 
 # while True:
 load_list:
+
+	# print(inst, end="")
+	li $v0, 4
+	la $a0, inst
+	syscall
+	
 	# newnum = int(input)
 	li $v0, 5
 	syscall
@@ -36,11 +52,6 @@ load_list:
 	j load_list
 
 print:
-	# addr = base + count
-	move $s0, $s1
-	mul $s0, $s0, 4
-	la $t1, base
-	add $s0, $s0, $t1
 	
 	# while true
 	print_loop:
@@ -52,12 +63,14 @@ print:
 		beq $s1, -1, exit
 		
 		# if num != 0:
-		beqz $t1, skip_print:
+		beqz $t1, skip_print
 
-		# print(num + comma)
+		# print(num, end="")
 		li $v0, 1
 		move $a0, $t1
 		syscall
+		
+		# prin(comma, end="")
 		li $v0, 4
 		la $a0, comma
 		syscall

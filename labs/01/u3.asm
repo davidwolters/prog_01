@@ -20,8 +20,8 @@ inst_3: .asciiz "\nEnter third side:\n> "
 res: .asciiz "\nSquared area: "
 
 .text
-main:
 
+main:
 # print(inst_1)
 li $v0, 4
 la $a0, inst_1
