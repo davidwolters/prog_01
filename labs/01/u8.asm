@@ -2,7 +2,7 @@
 ################################################################
 #         						 	 	 	 	 			   #
 #  Ett program som läser in en serie tal och skriver ut 	   #
-#  1 om talserien är ett palindrom, annars 					   #
+#  1 om talserien är ett palindrom, annars 0				   #
 #         						 	 	 	 	 			   #
 #                   Registerallokering:						   #
 # $v0										int newnum		   #
@@ -13,6 +13,7 @@
 # $t1										int num_1		   #
 # $t2										int num_2		   #
 ################################################################
+
 
 .data
 base: .space 40
@@ -40,7 +41,7 @@ load_list:
 	sw $v0, ($s0)
 
  	# if newnum == 0: break
-	beq $v0, $zero, check_palindrome
+	beqz $v0, check_palindrome
 	
 	# if count == 9: break
 	beq $s1, 9, check_palindrome
@@ -97,10 +98,10 @@ check_palindrome:
 			j pal_loop
 			
 		inc:
-		# num_2 += 4
+		# addr2 += 4
 		add $s2, $s2, 4
 		
-		# num-1 -= 4
+		# addr -= 4
 		sub $s0, $s0, 4
 		
 		j pal_loop

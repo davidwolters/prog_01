@@ -38,7 +38,7 @@ load_list:
 	sw $v0, ($s0)
 
  	# if newnum == 0: break
-	beq $v0, $zero, print
+	beqz $v0, print
 	
 	# if count == 9: break
 	beq $s1, 9, print
@@ -65,15 +65,15 @@ print:
 		# if num != 0:
 		beqz $t1, skip_print
 
-		# print(num, end="")
-		li $v0, 1
-		move $a0, $t1
-		syscall
+			# print(num, end="")
+			li $v0, 1
+			move $a0, $t1
+			syscall
 		
-		# prin(comma, end="")
-		li $v0, 4
-		la $a0, comma
-		syscall
+			# prin(comma, end="")
+			li $v0, 4
+			la $a0, comma
+			syscall
 		
 		skip_print:
 		

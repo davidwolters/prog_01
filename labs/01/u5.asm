@@ -10,9 +10,6 @@
 ###############################################################
 
 
-
-
-
 .data
 inst_1: .asciiz "\nEnter a number (0 to exit)\n> "
 res: .asciiz "\nThe greatest number is: "

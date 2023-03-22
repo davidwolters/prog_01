@@ -10,12 +10,9 @@
 ###############################################################
 
 
-
-
 .data
 inst: .asciiz "\nEnter a number:\n> "
 res: .asciiz "\nThe greatest number is: "
-
 
 
 .text
@@ -52,32 +49,32 @@ syscall
 li $v0, 5
 syscall
 
-	# if a > b: a_gt_b()
-	bge $s0, $s1, a_gt_b
-after_a_gt_b:
-	# elif b > a: check_b()
-	bge $s1, $s0, b_gt_a
-after_b_gt_a:
+# if a > b: a_gt_b()
+bgt $s0, $s1, a_gt_b
 
-	# else:
-	#     a = c
-	#     print_res()
-	move $s0, $v0
-	j print_res
+# elif b >= a: b_gt_a()
+bge $s1, $s0, b_gt_a
+
+c_gt:
+# else:
+#     a = c
+#     print_res()
+move $s0, $v0
+j print_res
 
 
 a_gt_b:
 	# if a > c:
 	#    print_res()
-	bge $s0, $v0, print_res
-	j after_a_gt_b
+	bgt $s0, $v0, print_res
+	j c_gt
 
 
 b_gt_a:
 	# if b > c:
 	#    b_gt()
-	bge $s1, $v0, b_gt
-	j after_b_gt_a
+	bgt $s1, $v0, b_gt
+	j c_gt
 
 b_gt:
 	# a = b
