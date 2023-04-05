@@ -1,6 +1,12 @@
+
+package com.main;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.stream.Collectors;
+
+import com.main.tasks.Horstmann;
+import com.main.tests.DigitSumTest;
+import com.main.tests.SortTest;
 
 public class App {
 
@@ -8,6 +14,16 @@ public class App {
     private static Random random = new Random(System.currentTimeMillis());
 
     public static void main(String[] args) throws Exception {
+    	
+    	
+    	new Horstmann().tilingFloor(10, 20);
+    	System.out.println(new Horstmann().stampMachine(3, 44));
+    	
+    	new DigitSumTest().testDigitSum();
+    	SortTest sortTest = new SortTest();
+    	sortTest.testBytIntill();
+    	sortTest.testBubbleSort();
+    	sortTest.testSortLimits();
     }
 
     private static int[] getRandomList(int length) {
