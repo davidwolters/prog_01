@@ -1,0 +1,23 @@
+package com.clock.components;
+
+import java.awt.Graphics;
+
+import com.clock.util.Vector;
+
+public class DiagonalLine extends Component {
+
+	
+	public DiagonalLine(Vector pos, int angle) {
+		
+	}
+
+	@Override
+	public void update() {
+		
+	}
+
+	@Override
+	public void paint(Graphics g) {
+		g.drawLine(getZIndex(), getZIndex(), getZIndex(), getZIndex());n
+	}
+}

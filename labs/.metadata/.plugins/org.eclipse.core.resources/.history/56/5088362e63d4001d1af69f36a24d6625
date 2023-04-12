@@ -1,0 +1,23 @@
+package com.pool.ui;
+
+import javax.swing.JFrame;
+
+import com.pool.scenes.PoolScene;
+
+public class PoolFrame extends JFrame {
+	public PoolFrame(String name) {
+		super(name);
+		
+		initWindow();
+	}
+	
+	private void initWindow() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		ScenePanel panel  = new ScenePanel(new PoolScene(this));
+		add(panel);
+		pack();
+		setLocationRelativeTo(null);
+		setVisible(true);
+		setResizable(false);
+	}
+}

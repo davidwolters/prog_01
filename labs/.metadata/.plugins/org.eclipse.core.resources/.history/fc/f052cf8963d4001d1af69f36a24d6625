@@ -1,0 +1,58 @@
+package com.pool.ui;
+
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.print.event.PrintJobAttributeEvent;
+import javax.swing.JPanel;
+import javax.swing.Timer;
+
+import com.pool.scenes.Scene;
+import com.pool.util.Config;
+import com.pool.util.Vector;
+
+public class ScenePanel extends JPanel implements ActionListener {
+
+	public static final Vector SIZE = new Vector(Config.Window.W * Config.Window.SCALE, Config.Window.H * Config.Window.SCALE);
+	public static final Vector CENTER = new Vector(SIZE.getScaledX() / 2, SIZE.getScaledY() / 2); 
+	
+	private Scene scene;
+	
+	private boolean started = false;
+
+	
+	public ScenePanel() {
+		setPreferredSize(SIZE.getScaledDimension());
+		setFocusable(true);
+	}
+	
+	
+	public void start() {
+		if (started) return;
+		
+		Timer timer = new Timer(Config.MILLIS_PER_SEC / Config.FPS, this);
+		timer.start();
+	}
+	
+	public void setScene(Scene scene) {
+		this.scene = scene;
+		start();
+	}
+	
+	
+	@Override
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		if (scene == null) return; 
+		scene.update();
+		scene.paint((Graphics2D) g);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		repaint();
+	}
+}

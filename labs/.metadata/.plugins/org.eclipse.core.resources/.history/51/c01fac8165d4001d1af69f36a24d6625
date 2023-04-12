@@ -1,0 +1,10 @@
+package com.pool.scenes;
+
+import com.pool.ui.ScenePanel;
+
+public class PoolScene extends Scene {
+	
+	public PoolScene(ScenePanel panel) {
+		super(panel);
+	}
+}

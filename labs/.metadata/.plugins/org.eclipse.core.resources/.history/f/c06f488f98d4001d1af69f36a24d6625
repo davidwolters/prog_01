@@ -1,0 +1,32 @@
+package com.pool.components.table;
+
+import java.awt.Color;
+import java.awt.Graphics2D;
+
+import com.pool.components.Component;
+import com.pool.util.Config;
+import com.pool.util.Vector;
+
+public class TableHoles extends Component {
+
+	boolean a = false;
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void paint(Graphics2D g) {
+		Vector pos = getGlobalPosition();
+		g.setColor(Color.red);
+		g.fillRect(pos.getScaledX() + 10, pos.getScaledY(), Vector.scaled(Config.Table.W), Vector.scaled(Config.Table.H));
+	}
+	
+	public void test() {
+		System.out.println("hello there");
+		if (a) System.out.println("kenobi");
+		a = true;
+	}
+
+}

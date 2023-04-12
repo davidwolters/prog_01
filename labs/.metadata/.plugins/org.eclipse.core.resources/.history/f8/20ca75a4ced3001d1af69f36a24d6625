@@ -1,0 +1,5 @@
+package com.pool.util;
+
+public class Config {
+
+}

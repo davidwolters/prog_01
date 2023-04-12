@@ -1,0 +1,45 @@
+package com.clock.components;
+
+import java.awt.Graphics2D;
+
+import com.clock.Config;
+import com.clock.util.Calc;
+import com.clock.util.Vector;
+
+public class Bullet extends Component {
+	
+	private Vector pos;
+	private double angle;
+	
+	
+	private int[] xpoints = new int[6];
+	private int[] ypoints = new int[6];
+	
+	public Bullet(Vector pos, double angle) {
+		this.pos = pos;
+		this.angle = angle;
+	
+		int[][] points = Calc.getRandomPolygons(pos, Config.Bullet.SIZE);
+	}
+
+	@Override
+	public void update() {
+		pos = pos.getEndFromAngle(angle, Config.Bullet.SPEED);
+	}
+
+	@Override
+	public void paint(Graphics2D g) {
+		g.setColor(Config.Bullet.COLOR);
+		g.draw3DRect(pos.getScaledX(), pos.getScaledY(), Config.Bullet.SIZE, Config.Bullet.SIZE, true);
+	}
+	
+	
+	public boolean isOutOfBounds() {
+		return this.pos.x > Config.WINDOW_W + Config.Bullet.SIZE
+				|| this.pos.x < - Config.Bullet.SIZE
+				|| this.pos.y > Config.WINDOW_H + Config.Bullet.SIZE
+				|| this.pos.y < -Config.Bullet.SIZE;
+	}
+
+	
+}

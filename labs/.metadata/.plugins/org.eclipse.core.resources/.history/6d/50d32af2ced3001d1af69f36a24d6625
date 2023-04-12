@@ -1,0 +1,10 @@
+package com.pool.ui;
+
+import javax.swing.JPanel;
+
+public class ScenePanel extends JPanel {
+
+	public ScenePanel() {
+		
+	}
+}

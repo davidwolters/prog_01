@@ -1,0 +1,19 @@
+package com.pool.scenes;
+
+import java.awt.Graphics2D;
+import java.util.ArrayList;
+
+import com.pool.components.GameObject;
+
+public abstract class Scene {
+	
+	public ArrayList<GameObject> gameObjects = new ArrayList<>();
+	
+	public void update() {
+		for (GameObject go : gameObjects) go.update();
+	}
+	
+	public void paint(Graphics2D g) {
+		for (GameObject go : gameObjects) go.paintg);
+	}
+}

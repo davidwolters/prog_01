@@ -1,0 +1,26 @@
+package com.pool.components;
+
+import java.awt.Graphics2D;
+
+import com.pool.util.Vector;
+
+public class RigidBody extends Component {
+
+	
+	public Vector acceleration;
+	public boolean fixed = false;
+	
+	
+	@Override
+	public void update() {
+		if (!fixed) this.gameObject.move(acceleration);
+		
+	}
+
+	@Override
+	public void paint(Graphics2D g) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

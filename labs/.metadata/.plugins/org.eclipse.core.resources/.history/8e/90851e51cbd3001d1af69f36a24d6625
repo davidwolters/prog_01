@@ -1,0 +1,53 @@
+package com.clock.components;
+
+import java.awt.BasicStroke;
+import java.awt.Font;
+import java.awt.Graphics2D;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import com.clock.Config;
+
+
+public class DateMarker extends Component {
+	
+	private String dateString;
+	
+	public DateMarker() {
+		Date date = Calendar.getInstance().getTime();
+		DateFormat dayFormat = new SimpleDateFormat("d");
+		DateFormat monthFormat = new SimpleDateFormat("MMM");
+		DateFormat yearFormat = new SimpleDateFormat("yyyy");
+		dateString = dateFormat.format(date);
+	}
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void paint(Graphics2D g) {
+		
+		g.setColor(Config.Date.COLOR);
+		
+		int x = ClockPanel.CENTER.getScaledX() - Config.Date.SIZE / 2;
+		int y =ClockPanel.CENTER.getScaledY() + Config.Date.Y_OFFSET - Config.Date.SIZE / 2;
+		
+		g.setStroke(new BasicStroke(1));
+		g.drawRect(
+			x,
+			y,
+			Config.Date.SIZE,
+			Config.Date.SIZE
+		);
+		
+		g.setColor(Config.Date.TEXT) ;
+		g.setFont(new Font(Config.Date.FONT, Font.PLAIN, Config.Date.FONT_SIZE));
+		int width = g.getFontMetrics().stringWidth(dateString);
+		g.drawString(dateString, x - (width/2) + Config.Date.SIZE / 2, y + Config.Date.SIZE / 2);
+	}
+
+}

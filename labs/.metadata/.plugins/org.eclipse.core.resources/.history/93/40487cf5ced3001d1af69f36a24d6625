@@ -1,0 +1,10 @@
+package com.pool.util;
+
+public class Config {
+
+	
+	public static final class Window {
+		public static final int W = 1000;
+		public static final int H = 600;
+	}
+}
