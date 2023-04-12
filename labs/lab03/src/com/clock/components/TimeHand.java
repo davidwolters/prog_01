@@ -23,10 +23,8 @@ public class TimeHand extends DiagonalLine {
 	
 	private Calendar calendar;
 	
-	
 	private ArrayList<Bullet> bullets = new ArrayList<>();
 	
-
 	public TimeHand(Vector start, TimeHandType type) {
 		super();
 		this.start = start;
@@ -54,6 +52,13 @@ public class TimeHand extends DiagonalLine {
 		
 		for (Bullet bullet : bullets) {
 			bullet.update();
+		}
+		
+		for (int i = 0; i < bullets.size(); i++) {
+			bullets.get(i).update();
+			if (bullets.get(i).isOutOfBounds()) {
+				bullets.remove(i);
+			}
 		}
 	}
 	

@@ -13,8 +13,6 @@ public class Bullet extends Component {
 	private Vector pos;
 	private double angle;
 
-	
-	
 	private int[] xpoints = new int[Config.Bullet.VERTICES];
 	private int[] ypoints = new int[Config.Bullet.VERTICES];
 	
@@ -27,7 +25,13 @@ public class Bullet extends Component {
 	@Override
 	public void update() {
 		pos = pos.getEndFromAngle(angle, Config.Bullet.SPEED);
-		int[][] points = Calc.getRandomPolygon(pos, Config.Bullet.SIZE, Config.Bullet.RAND_RANGE, Config.Bullet.VERTICES);
+		int[][] points = Calc.getRandomPolygon(
+				pos,
+				Config.Bullet.SIZE,
+				Config.Bullet.RAND_RANGE,
+				Config.Bullet.VERTICES
+		);
+
 		xpoints = points[0];
 		ypoints = points[1];
 	}

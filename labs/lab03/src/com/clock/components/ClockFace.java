@@ -12,16 +12,14 @@ public class ClockFace extends Component {
 	public void paint(Graphics2D g) {
 		
 		int w = Config.Face.WIDTH;
-		int d = Config.CLOCK_RADIUS * 2;
+		int d = (int)((Config.CLOCK_RADIUS * 2)*Config.WINDOW_SCALE);
+		int centerRad = Config.Face.CENTER_WIDTH;
 		Vector c = ClockPanel.CENTER;
 		g.setColor(Config.Face.COLOR);
 		g.setStroke(new BasicStroke(Config.Face.WIDTH));
 		g.drawOval(c.getScaledX() - (d/2), c.getScaledY() - (d/2), d, d);
-		
-		
-		
+		g.fillOval(c.getScaledX() - (centerRad / 2), c.getScaledY() - (centerRad / 2), centerRad, centerRad);
 	}
-
 	
 	@Override
 	public void update() {

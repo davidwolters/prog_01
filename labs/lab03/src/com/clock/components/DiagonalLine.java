@@ -39,8 +39,6 @@ public class DiagonalLine extends Component {
 	public void paint(Graphics2D g) {
 		g.setStroke(new BasicStroke(width));
 		g.setColor(color);
-//		g.drawLine(start.getScaledX(), start.getScaledY(), end.getScaledX(), end.getScaledY());
-		
 		g.draw(new Line2D.Float(start.getScaledX(), start.getScaledY(), end.getScaledX(), end.getScaledY()));
 
 	}
