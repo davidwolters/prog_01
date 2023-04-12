@@ -1,0 +1,8 @@
+package com.pool.components;
+
+public class GameObjectFactory {
+
+	public static GameObject makeTable() {
+		
+	}
+}

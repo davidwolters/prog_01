@@ -1,0 +1,99 @@
+package com.clock.components;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.concurrent.atomic.DoubleAccumulator;
+
+import javax.swing.*;
+
+import com.clock.Config;
+import com.clock.util.TimeHandType;
+import com.clock.util.Vector;
+
+public class ClockPanel extends JPanel implements ActionListener {
+	
+	private final Vector SIZE = new Vector(Config.WINDOW_W, Config.WINDOW_H);
+	private final Vector CENTER = new Vector(Config.WINDOW_W / 2, Config.WINDOW_H / 2);
+	
+	private ArrayList<Component> components = new ArrayList<>();
+	
+	
+	public ClockPanel() {
+		setPreferredSize(SIZE.getScaledDimension());
+
+		addTimeMarkers();
+		addTimeHands();
+
+		Timer timer = new Timer(Config.MILLIS_PER_SEC / Config.FPS, this);
+		timer.start();
+	}
+	
+	private void addTimeMarkers() {
+		double radius = 200;
+		double hourScalar = 2;
+		double l = 20;
+
+		for (int i = 0; i < 3600; i ++) {
+			double angle = 90 - (i/10);
+			boolean hour = i % 300 == 0;
+			boolean minute = i % 60 == 0;
+			addComponent(new DiagonalLine(getTimeMarkerStart(angle, hour, minute), angle, getTimeMarkerLength(hour, minute), Color.BLUE, getTimeMarkerWidth(hour, minute)));
+		}
+	}
+	
+	private double getTimeMarkerLength(boolean isHour, boolean isMinute) {
+		if (isHour) return Config.Markers.H_LENGTH;
+		if (isMinute) return Config.Markers.M_LENGTH;
+		return Config.Markers.S_LENGTH;
+	}
+	
+	private float getTimeMarkerWidth(boolean isHour, boolean isMinute) {
+		if (isHour) return Config.Markers.H_WIDTH;
+		if (isMinute) return Config.Markers.M_WIDTHW;
+		return Config.Markers.M_WIDTH;
+	}
+	
+	private Vector getTimeMarkerStart(double angle, boolean isHour, boolean isMinute) {
+		if (isHour) return CENTER.getEndFromAngle(angle, Config.CLOCK_RADIUS - (Config.HOUR_MARKER_LENGTH));
+		if (isMinute) return CENTER.getEndFromAngle(angle, Config.CLOCK_RADIUS - (Config.MINUTE_MARKER_LENGTH));
+		return CENTER.getEndFromAngle(angle, Config.CLOCK_RADIUS);
+
+	}
+	
+	
+	private void addTimeHands() {
+		addComponent(new TimeHand(CENTER, TimeHandType.HOUR));
+		addComponent(new TimeHand(CENTER, TimeHandType.MINUTE));
+		addComponent(new TimeHand(CENTER, TimeHandType.SECOND));
+	}
+	
+	
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		for (Component c: components) {
+			c.update();
+			c.paint((Graphics2D) g);
+		}
+	}
+	
+	
+	public void addComponent(Component c) {
+		components.add(c);
+		Collections.sort(components, (c1, c2) -> c1.compareTo(c2));
+	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		repaint();
+		
+	}
+	
+	
+}

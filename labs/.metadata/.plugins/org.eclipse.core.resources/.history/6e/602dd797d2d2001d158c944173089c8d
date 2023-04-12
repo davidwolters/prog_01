@@ -1,0 +1,35 @@
+package com.clock.components;
+
+import java.awt.Color;
+import java.awt.Graphics;
+
+import com.clock.util.Vector;
+
+public class DiagonalLine extends Component {
+
+	
+	private Vector start;
+	private Vector end;
+	private Color color;
+	private double angle;
+	private double length;
+	
+	public DiagonalLine(Vector start, double angle, double length, Color color) {
+		this.start = start;
+		this.angle = angle;
+		this.color = color;
+		this.length = length;
+	}
+
+	@Override
+	public void update() {
+		end = start.getEndFromAngle(angle, length);
+	}
+
+	@Override
+	public void paint(Graphics g) {
+		g.setColor(color);
+		g.drawLine(start.getScaledX(), start.getScaledY(), end.getScaledX(), end.getScaledY());
+		
+	}
+}

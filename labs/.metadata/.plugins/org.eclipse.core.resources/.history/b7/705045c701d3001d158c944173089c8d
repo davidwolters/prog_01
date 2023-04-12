@@ -1,0 +1,23 @@
+package com.clock.components;
+
+import java.awt.Graphics2D;
+import java.util.ArrayList;
+import java.util.Collections;
+
+public abstract class ParentComponent extends Component {
+	
+	protected ArrayList<Component> components = new ArrayList<>();
+
+
+	public void addComponent(Component c) {
+		components.add(c);
+		Collections.sort(components, (c1, c2) -> c1.compareTo(c2));
+	}
+	
+	protected abstract void beforePaint(Graphics2D g);
+	
+	@Override
+	public void paint(Graphics2D g) {
+		beforePaint(g);
+	}
+}

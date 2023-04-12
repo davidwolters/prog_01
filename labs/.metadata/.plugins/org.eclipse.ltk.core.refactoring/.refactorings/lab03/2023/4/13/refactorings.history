@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename package &apos;com.clock.main.components&apos; to &apos;com.clock.components&apos;&#x0A;- Original project: &apos;lab03&apos;&#x0A;- Original element: &apos;lab03/src/com.clock.main.components&apos;&#x0A;- Renamed element: &apos;lab03/src/com.clock.components&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" description="Rename package &apos;com.clock.main.components&apos;" flags="589830" hierarchical="false" id="org.eclipse.jdt.ui.rename.package" input="/src&lt;com.clock.main.components" name="com.clock.components" qualified="false" references="true" stamp="1680447935028" textual="false" version="1.0"/>
+</session>
