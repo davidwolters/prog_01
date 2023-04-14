@@ -38,8 +38,8 @@ public class Config {
 		public static final Color WHITE = Color.WHITE;
 		public static final Color OUTLINE = Color.BLACK;
 		public static final int NUM_BALLS = 15;
-		public static final int SIZE = 15;
-		public static final int STRIPE_SIZE = 9;
+		public static final int SIZE = 20;
+		public static final int STRIPE_SIZE = 10;
 		public static final int OUTLINE_W = 2;
 	}
 }

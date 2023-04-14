@@ -15,7 +15,7 @@ public abstract class ParentComponent extends JPanel {
 	public void addComponent(Component c) {
 		components.add(c);
 	}
-	
+
 	protected abstract void beforePaint(Graphics2D g);
 	
 	@Override

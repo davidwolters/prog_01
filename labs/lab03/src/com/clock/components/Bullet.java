@@ -25,6 +25,7 @@ public class Bullet extends Component {
 	@Override
 	public void update() {
 		pos = pos.getEndFromAngle(angle, Config.Bullet.SPEED);
+
 		int[][] points = Calc.getRandomPolygon(
 				pos,
 				Config.Bullet.SIZE,
@@ -49,6 +50,4 @@ public class Bullet extends Component {
 				|| this.pos.y > Config.WINDOW_H + Config.Bullet.SIZE
 				|| this.pos.y < -Config.Bullet.SIZE;
 	}
-
-	
 }

@@ -16,6 +16,7 @@ import com.clock.Config;
 import com.clock.util.TimeHandType;
 import com.clock.util.Vector;
 
+
 public class ClockPanel extends ParentComponent implements ActionListener {
 	
 	private final Vector SIZE = new Vector(Config.WINDOW_W, Config.WINDOW_H);
@@ -87,7 +88,6 @@ public class ClockPanel extends ParentComponent implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		repaint();
-		
 	}
 
 	@Override

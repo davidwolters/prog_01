@@ -7,24 +7,16 @@ import javax.swing.Timer;
 import com.clock.Config;
 import com.clock.components.ClockFrame;
 
-public class App implements ActionListener {
+public class App {
 	
 	
 	public static void main(String[] args) {
 		new App();
-		
 	}
 	
 	public App() {
-		
-		new ClockFrame("hi");
+		ClockFrame myClock = new ClockFrame("Clock");
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
-		System.out.println("hi");
-		
-	}
+
 }

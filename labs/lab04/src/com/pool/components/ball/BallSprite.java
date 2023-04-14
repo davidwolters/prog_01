@@ -38,11 +38,14 @@ public class BallSprite extends Component {
 		g.fillOval(x, y, (int)r*2, (int)r*2);
 		if (isStriped) {
 			int stripeR = Config.Ball.STRIPE_SIZE / 2;
-			int sx = x + stripeR / 2;
-			int sy = y + stripeR / 2;
+			int cx = (int) (x + r);
+			int cy = (int) (y + r);
+			int sx = (int) (x + r - stripeR);
+			int sy = (int) (y + r - stripeR);
 			g.setColor(Config.Ball.STRIPE);
 			g.fillOval(sx, sy, stripeR*2, stripeR*2);
 		}
+
 		
 		int w = Config.Ball.OUTLINE_W;
 		g.setStroke(new BasicStroke(w));

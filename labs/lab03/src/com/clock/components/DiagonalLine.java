@@ -40,6 +40,5 @@ public class DiagonalLine extends Component {
 		g.setStroke(new BasicStroke(width));
 		g.setColor(color);
 		g.draw(new Line2D.Float(start.getScaledX(), start.getScaledY(), end.getScaledX(), end.getScaledY()));
-
 	}
 }

@@ -36,6 +36,7 @@ public class TimeHand extends DiagonalLine {
 		width = getWidth();
 	}
 	
+	
 	@Override
 	public void update() {
 		super.update();
@@ -44,15 +45,6 @@ public class TimeHand extends DiagonalLine {
 		
 		angle = getAngle();
 		if (framesPassed % Config.FPS == 0) bullets.add(new Bullet(end, angle));
-
-		
-		if (type == TimeHandType.HOUR) {
-			System.out.println(angle);
-		}
-		
-		for (Bullet bullet : bullets) {
-			bullet.update();
-		}
 		
 		for (int i = 0; i < bullets.size(); i++) {
 			bullets.get(i).update();

@@ -12,7 +12,6 @@ public class Vector {
 		this.y = y;
 	}
 	
-	
 	public int getScaledX() {
 		return (int)(this.x * Config.WINDOW_SCALE);
 	}

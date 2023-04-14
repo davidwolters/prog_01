@@ -44,7 +44,7 @@ public class GameObjectFactory {
 		ball.addComponent(new BallSprite(number));
 		RigidBody rb = new RigidBody();
 		ball.addComponent(rb);
-		rb.acceleration = new Vector(Math.random(), Math.random());
+		rb.acceleration = new Vector(0.5 + Math.random()*0.5, 0.5 + Math.random()*0.5);
 		return ball;
 	}
 	

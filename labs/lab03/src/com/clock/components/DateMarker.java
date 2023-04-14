@@ -7,6 +7,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
+
 import com.clock.Config;
 
 
@@ -17,7 +19,8 @@ public class DateMarker extends Component {
 	private String yearString;
 	
 	public DateMarker() {
-		Date date = Calendar.getInstance().getTime();
+		Date date = Calendar.getInstance(TimeZone.getDefault()).getTime();
+
 		DateFormat dayFormat = new SimpleDateFormat("d");
 		DateFormat monthFormat = new SimpleDateFormat("MMMM");
 		DateFormat yearFormat = new SimpleDateFormat("yyyy");
@@ -25,9 +28,6 @@ public class DateMarker extends Component {
 		monthString = monthFormat.format(date);
 		yearString = yearFormat.format(date);
 	}
-
-	@Override
-	public void update() { }
 
 	@Override
 	public void paint(Graphics2D g) {
@@ -49,8 +49,10 @@ public class DateMarker extends Component {
 		int dayWidth = g.getFontMetrics().stringWidth(dayString);
 		int monthWidth = g.getFontMetrics().stringWidth(monthString);
 		int yearWidth = g.getFontMetrics().stringWidth(yearString);
+
 		int originX = x + Config.Date.SIZE / 2; 
 		int originY = y + Config.Date.GAP  + Config.Date.FONT_SIZE;
+		
 		g.drawString(dayString, originX - (dayWidth/2), originY);
 		originY += Config.Date.FONT_SIZE + Config.Date.GAP;
 		g.drawString(monthString, originX - (monthWidth/2), originY);

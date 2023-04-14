@@ -16,20 +16,17 @@ public class ClockFrame extends JFrame {
 	public ClockFrame(String name) {
 		super(name);
 		panel = new ClockPanel();
-		panel.setPreferredSize(new Dimension((int)(Config.WINDOW_W * Config.WINDOW_SCALE), (int)(Config.WINDOW_H * Config.WINDOW_SCALE)));
 		panel.setFocusable(true);
 
-
-
+		
 		addComponentListener(new ComponentAdapter() {
-            // Give the window an elliptical shape.
-            // If the window is resized, the shape is recalculated here.
             @Override
             public void componentResized(ComponentEvent e) {
                 setShape(new Ellipse2D.Double(0,0,getWidth(),getHeight()));
             }
         });
-
+		
+		
         setUndecorated(true);
 		initWindow();
 	}
@@ -42,7 +39,7 @@ public class ClockFrame extends JFrame {
 		pack();
 		setVisible(true);
 		setLocationRelativeTo(null);
-//		setResizable(false);
 	}
 	
 }
+
