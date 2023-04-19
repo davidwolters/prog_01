@@ -106,6 +106,4 @@ public class TimeHand extends DiagonalLine {
 		if (type == TimeHandType.MINUTE) return Config.Hands.M_WIDTH;
 		return Config.Hands.S_WIDTH;
 	}
-	
-
 }

@@ -37,39 +37,34 @@ public class ClockPanel extends ParentComponent implements ActionListener {
 		for (int i = 0; i < 60; i ++) {
 			double angle = 90 - (i*6);
 			boolean hour = i % 5 == 0;
-			boolean minute = true;
 			addComponent(new DiagonalLine(
-					getTimeMarkerStart(angle, hour, minute),
+					getTimeMarkerStart(angle, hour),
 					angle,
-					getTimeMarkerLength(hour, minute),
-					getTimeMarkerColor(hour, minute),
-					getTimeMarkerWidth(hour, minute)
+					getTimeMarkerLength(hour),
+					getTimeMarkerColor(hour),
+					getTimeMarkerWidth(hour)
 			));
 		}
 	}
 	
-	private double getTimeMarkerLength(boolean isHour, boolean isMinute) {
+	private double getTimeMarkerLength(boolean isHour) {
 		if (isHour) return Config.Markers.H_LENGTH;
-		if (isMinute) return Config.Markers.M_LENGTH;
-		return Config.Markers.S_LENGTH;
+		return Config.Markers.M_LENGTH;
 	}
 	
-	private float getTimeMarkerWidth(boolean isHour, boolean isMinute) {
+	private float getTimeMarkerWidth(boolean isHour) {
 		if (isHour) return Config.Markers.H_WIDTH;
-		if (isMinute) return Config.Markers.M_WIDTH;
 		return Config.Markers.M_WIDTH;
 	}
 	
-	private Vector getTimeMarkerStart(double angle, boolean isHour, boolean isMinute) {
+	private Vector getTimeMarkerStart(double angle, boolean isHour) {
 		if (isHour) return CENTER.getEndFromAngle(angle, Config.CLOCK_RADIUS - (Config.Markers.H_LENGTH));
-		if (isMinute) return CENTER.getEndFromAngle(angle, Config.CLOCK_RADIUS - (Config.Markers.M_LENGTH));
-		return CENTER.getEndFromAngle(angle, Config.CLOCK_RADIUS - Config.Markers.S_LENGTH);
+		return CENTER.getEndFromAngle(angle, Config.CLOCK_RADIUS - (Config.Markers.M_LENGTH));
 	}
 	
-	private Color getTimeMarkerColor(boolean isHour, boolean isMinute) {
+	private Color getTimeMarkerColor(boolean isHour) {
 		if (isHour) return Config.Markers.H_COLOR;
-		if (isMinute) return Config.Markers.M_COLOR;
-		return Config.Markers.S_COLOR;
+		return Config.Markers.M_COLOR;
 	}
 	
 	
@@ -83,7 +78,6 @@ public class ClockPanel extends ParentComponent implements ActionListener {
 		addComponent(new ClockFace());
 		addComponent(new DateMarker());
 	}
-	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

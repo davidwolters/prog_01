@@ -16,8 +16,10 @@ public class ClockFrame extends JFrame {
 	public ClockFrame(String name) {
 		super(name);
 		panel = new ClockPanel();
+	}
+	
+	public void start() {
 		panel.setFocusable(true);
-
 		
 		addComponentListener(new ComponentAdapter() {
             @Override
@@ -25,7 +27,6 @@ public class ClockFrame extends JFrame {
                 setShape(new Ellipse2D.Double(0,0,getWidth(),getHeight()));
             }
         });
-		
 		
         setUndecorated(true);
 		initWindow();

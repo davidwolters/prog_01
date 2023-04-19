@@ -7,6 +7,7 @@ import javax.crypto.spec.DHPublicKeySpec;
 public class Config {
 	public static final int WINDOW_W = 1000;
 	public static final int WINDOW_H = 1000;
+	public static final String WINDOW_NAME = "Bling bling";
 	public static final double WINDOW_SCALE = 1;
 	public static final int MILLIS_PER_SEC = 1000;
 	public static final int FPS = 10; 
@@ -19,13 +20,10 @@ public class Config {
 	public static final class Markers {
 		public static final int H_LENGTH = 30;
 		public static final int M_LENGTH = 15;
-		public static final int S_LENGTH = 5;
 		public static final int H_WIDTH = 3;
 		public static final int M_WIDTH = 2;
-		public static final int S_WIDTH = 1;
 		public static final Color H_COLOR = new Color(100, 100, 100);
 		public static final Color M_COLOR = new Color(200, 200, 200);
-		public static final Color S_COLOR = new Color(220, 220, 220);
 	}
 	
 	

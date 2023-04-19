@@ -11,12 +11,7 @@ public class App {
 	
 	
 	public static void main(String[] args) {
-		new App();
+		new ClockFrame(Config.WINDOW_NAME).start();
 	}
 	
-	public App() {
-		ClockFrame myClock = new ClockFrame("Clock");
-	}
-
-
 }
