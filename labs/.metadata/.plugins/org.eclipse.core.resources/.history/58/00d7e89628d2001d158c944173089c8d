@@ -1,0 +1,26 @@
+package com.clock.components;
+
+import java.awt.Graphics;
+
+import com.clock.util.Vector;
+
+public class DiagonalLine extends Component {
+
+	
+	private Vector pos;
+	private double angle;
+	
+	public DiagonalLine(Vector pos, double angle) {
+		
+	}
+
+	@Override
+	public void update() {
+		
+	}
+
+	@Override
+	public void paint(Graphics g) {
+		g.drawLine(pos.getScaledX(), pos.getScaledY(), );
+	}
+}

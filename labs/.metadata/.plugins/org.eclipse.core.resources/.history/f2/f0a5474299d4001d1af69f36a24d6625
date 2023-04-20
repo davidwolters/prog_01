@@ -1,0 +1,23 @@
+package com.pool.util;
+
+import java.awt.Color;
+
+public class Config {
+
+	public static final int FPS = 100;
+	public static final int MILLIS_PER_SEC = 1000;
+	
+	public static final class Window {
+		public static final int W = 1000;
+		public static final int H = 600;
+		public static final int SCALE = 1;
+	}
+	
+	
+	public static final class Table {
+		public static final int W = 700;
+		public static final int H = 500;
+		public static final Vector SIZE = new Vector(W, H);
+		public static final Color COLOR = Color.GREEN;
+	}
+}

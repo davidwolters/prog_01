@@ -1,0 +1,22 @@
+package com.pool.scenes;
+
+import java.util.ArrayList;
+
+import com.pool.components.Component;
+import com.pool.components.GameObject;
+import com.pool.components.table.TableSprite;
+import com.pool.ui.ScenePanel;
+import com.pool.util.Config;
+import com.pool.util.Vector;
+
+public class PoolScene extends Scene {
+	
+	public PoolScene(ScenePanel panel) {
+		super(panel);
+		
+		GameObject table = new GameObject(Vector.offsetCenter(Config.Table.SIZE));
+		table.addComponent(new TableSprite());
+		addGameObject(table);
+	}
+	
+}

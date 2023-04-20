@@ -1,0 +1,20 @@
+package com.clock.components;
+
+import java.awt.Graphics2D;
+
+import com.clock.Config;
+
+public class ClockFace extends Component {
+
+	@Override
+	public void paint(Graphics2D g) {
+		g.setColor(Config.Face.COLOR);
+		g.drawOval();
+	}
+
+	
+	@Override
+	public void update() {
+		
+	}
+}

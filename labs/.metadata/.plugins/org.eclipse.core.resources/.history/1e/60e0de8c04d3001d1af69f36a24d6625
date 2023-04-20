@@ -1,0 +1,5 @@
+package com.clock.components;
+
+public class Bullet {
+
+}

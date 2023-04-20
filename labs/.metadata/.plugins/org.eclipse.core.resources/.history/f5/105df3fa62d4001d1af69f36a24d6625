@@ -1,0 +1,6 @@
+package com.pool.scenes;
+
+public class PoolScene extends Scene {
+
+	
+}

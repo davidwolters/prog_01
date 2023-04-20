@@ -1,0 +1,30 @@
+package com.clock.components;
+
+import java.awt.BasicStroke;
+import java.awt.Graphics2D;
+
+import com.clock.Config;
+import com.clock.util.Vector;
+
+public class ClockFace extends Component {
+
+	@Override
+	public void paint(Graphics2D g) {
+		
+		int w = Config.Face.WIDTH;
+		int d = (int)((Config.CLOCK_RADIUS * 2)*Config.WINDOW_SCALE);
+		Vector c = ClockPanel.CENTER;
+		g.setColor(Config.Face.COLOR);
+		g.setStroke(new BasicStroke(Config.Face.WIDTH));
+		g.drawOval(c.getScaledX() - (d/2), c.getScaledY() - (d/2), d, d);
+		
+		
+		
+	}
+
+	
+	@Override
+	public void update() {
+		
+	}
+}

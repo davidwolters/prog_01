@@ -1,0 +1,22 @@
+package com.pool.components.ball;
+
+import java.awt.Graphics2D;
+
+import com.pool.components.Component;
+import com.pool.util.Vector;
+
+public class BallSprite extends Component {
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void paint(Graphics2D g) {
+		
+		Vector pos = getGlobalPosition();
+		
+	}
+
+}

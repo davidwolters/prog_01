@@ -1,0 +1,11 @@
+package com.pool.components;
+
+public class GameObjectFactory {
+
+	public static GameObject makeTable() {
+		GameObject table = new GameObject(GameObjectTag.TABLE, Vector.offsetCenter(Config.Table.SIZE));
+		table.addComponent(new TableSprite());
+		table.addComponent(new TableHoles());
+		return table;
+	}
+}
