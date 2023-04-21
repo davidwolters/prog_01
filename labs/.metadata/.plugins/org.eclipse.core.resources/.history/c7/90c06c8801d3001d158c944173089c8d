@@ -1,9 +1,0 @@
-package com.clock.components;
-
-import java.util.ArrayList;
-
-public abstract class ParentComponent extends Component {
-	
-	protected ArrayList<Component> components = new ArrayList<>();
-	
-}

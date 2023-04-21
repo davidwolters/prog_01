@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="java.text.DateFormat"/>
     <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
     <fullyQualifiedTypeName name="java.util.Date"/>
     <fullyQualifiedTypeName name="com.clock.components.Component"/>
@@ -33,31 +32,32 @@
     <fullyQualifiedTypeName name="java.util.Timer"/>
     <fullyQualifiedTypeName name="javax.swing.Timer"/>
     <fullyQualifiedTypeName name="com.pool.ui.PoolFrame"/>
-    <fullyQualifiedTypeName name="com.pool.scenes.Scene"/>
     <fullyQualifiedTypeName name="com.pool.scenes.PoolScene"/>
-    <fullyQualifiedTypeName name="javax.swing.text.Position"/>
     <fullyQualifiedTypeName name="com.pool.util.Config.Window"/>
     <fullyQualifiedTypeName name="com.pool.ui.ScenePanel"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="java.lang.Thread"/>
     <fullyQualifiedTypeName name="java.lang.Class"/>
     <fullyQualifiedTypeName name="java.lang.String"/>
     <fullyQualifiedTypeName name="javax.crypto.spec.DHPublicKeySpec"/>
     <fullyQualifiedTypeName name="com.pool.components.table.TableSprite"/>
     <fullyQualifiedTypeName name="com.pool.components.table.TableHoles"/>
+    <fullyQualifiedTypeName name="com.pool.util.Message"/>
+    <fullyQualifiedTypeName name="com.pool.components.ball.BallSprite"/>
+    <fullyQualifiedTypeName name="com.pool.util.Config.Table"/>
+    <fullyQualifiedTypeName name="com.pool.components.Component"/>
+    <fullyQualifiedTypeName name="com.pool.scenes.Scene"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="com.pool.util.Physics"/>
+    <fullyQualifiedTypeName name="com.pool.components.BallPhysicsHandler"/>
+    <fullyQualifiedTypeName name="com.pool.components.GameObjectFactory"/>
+    <fullyQualifiedTypeName name="com.pool.util.GameObjectTag"/>
     <fullyQualifiedTypeName name="com.pool.components.table.TableBorder"/>
+    <fullyQualifiedTypeName name="com.pool.components.RigidBody"/>
+    <fullyQualifiedTypeName name="java.awt.BasicStroke"/>
+    <fullyQualifiedTypeName name="com.pool.components.GameObject"/>
     <fullyQualifiedTypeName name="java.awt.Color"/>
     <fullyQualifiedTypeName name="com.pool.util.Config"/>
-    <fullyQualifiedTypeName name="com.pool.util.Config.Ball"/>
-    <fullyQualifiedTypeName name="java.awt.BasicStroke"/>
-    <fullyQualifiedTypeName name="com.pool.util.Message"/>
-    <fullyQualifiedTypeName name="com.pool.components.Component"/>
-    <fullyQualifiedTypeName name="com.pool.components.ball.BallSprite"/>
-    <fullyQualifiedTypeName name="com.pool.util.GameObjectTag"/>
-    <fullyQualifiedTypeName name="com.pool.util.Physics"/>
-    <fullyQualifiedTypeName name="com.pool.util.Config.Table"/>
-    <fullyQualifiedTypeName name="com.pool.components.GameObjectFactory"/>
-    <fullyQualifiedTypeName name="com.pool.components.GameObject"/>
-    <fullyQualifiedTypeName name="com.pool.components.RigidBody"/>
+    <fullyQualifiedTypeName name="javax.swing.text.Position"/>
     <fullyQualifiedTypeName name="com.pool.util.Vector"/>
+    <fullyQualifiedTypeName name="com.pool.util.Config.Ball"/>
 </qualifiedTypeNameHistroy>

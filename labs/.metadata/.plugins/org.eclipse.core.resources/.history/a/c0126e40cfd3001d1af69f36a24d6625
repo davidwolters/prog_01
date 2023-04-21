@@ -1,9 +1,0 @@
-package com.pool.ui;
-
-import javax.swing.JFrame;
-
-public class PoolFrame extends JFrame {
-	public PoolFrame(String name) {
-		super(name) ;
-	}
-}
