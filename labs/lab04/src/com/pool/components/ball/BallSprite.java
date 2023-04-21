@@ -4,6 +4,8 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
+import javax.swing.text.Position;
+
 import com.pool.components.Component;
 import com.pool.util.Config;
 import com.pool.util.Vector;
@@ -29,10 +31,10 @@ public class BallSprite extends Component {
 
 	@Override
 	public void paint(Graphics2D g) {
-		Vector pos = getGlobalPosition();
+		Vector pos = gameObject.position;
 		double r = Config.Ball.SIZE / 2;
-		int x = (int)(pos.getScaledX() - r);
-		int y = (int)(pos.getScaledY() - r);
+		int x = (int)(pos.x() - r);
+		int y = (int)(pos.y() - r);
 		
 		g.setColor(color);
 		g.fillOval(x, y, (int)r*2, (int)r*2);

@@ -28,9 +28,9 @@ public class GameObjectFactory {
 			
 			do {
 				ball.position = new Vector(
-					Math.random() * Config.Table.SIZE.x,
-					Math.random() * Config.Table.SIZE.y
-				);
+					Math.random() * (Config.Table.SIZE.x - Config.Ball.SIZE) + Config.Ball.SIZE,
+					Math.random() * (Config.Table.SIZE.y - Config.Ball.SIZE) + Config.Ball.SIZE
+				).add(table.position);
 			} while (!noCollisions(balls, ball));
 				System.out.println(ball.position);
 			balls[i] = ball;
@@ -44,8 +44,15 @@ public class GameObjectFactory {
 		ball.addComponent(new BallSprite(number));
 		RigidBody rb = new RigidBody();
 		ball.addComponent(rb);
-		rb.acceleration = new Vector(0.5 + Math.random()*0.5, 0.5 + Math.random()*0.5);
+		int max = 80;
+		rb.speed = new Vector(Math.random()*max*2 - max, Math.random()*max*2 - max);
 		return ball;
+	}
+	
+	public static GameObject makeBallPhysicsHandler() {
+		GameObject g = new GameObject(GameObjectTag.BALL_PHYSICS, Vector.ZERO);
+		g.addComponent(new BallPhysicsHandler());
+		return g;
 	}
 	
 	private static boolean noCollisions(GameObject[] balls, GameObject newBall) {

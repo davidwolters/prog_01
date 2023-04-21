@@ -3,6 +3,7 @@ package com.pool.components;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
+import com.pool.scenes.Scene;
 import com.pool.util.GameObjectTag;
 import com.pool.util.Message;
 import com.pool.util.Vector;
@@ -16,6 +17,8 @@ public class GameObject {
 	public ArrayList<Component> components = new ArrayList<>();
 	
 	public ArrayList<GameObject> children = new ArrayList<>();
+	
+	public Scene scene;
 	
 	public GameObject(GameObjectTag tag, Vector position) {
 		this.position = position;
@@ -41,7 +44,10 @@ public class GameObject {
 	public void addComponent(Component c) {
 		components.add(c);
 		c.gameObject = this;
-		c.init();
+	}
+	
+	public void init() {
+		for (Component c : components) c.init();
 	}
 	
 	public void addChild(GameObject child) {
@@ -63,14 +69,6 @@ public class GameObject {
 		return null;
 	}
 	
-	public Vector getGlobalPosition() {
-		if (parent == null) return position;
-		return Vector.add(position, parent.getGlobalPosition());
-	}
-	
-	public void setGlobalPosition(Vector pos) {
-		position = Vector.sub(pos, parent.getGlobalPosition());
-	}
 	
 	public void message(Message message, GameObject sender) {
 		for (Component c: components)

@@ -17,7 +17,7 @@ import com.pool.util.Vector;
 public class ScenePanel extends JPanel implements ActionListener {
 
 	public static final Vector SIZE = new Vector(Config.Window.W * Config.Window.SCALE, Config.Window.H * Config.Window.SCALE);
-	public static final Vector CENTER = new Vector(SIZE.getScaledX() / 2, SIZE.getScaledY() / 2); 
+	public static final Vector CENTER = new Vector(SIZE.x / 2, SIZE.y / 2); 
 	
 	private Scene scene;
 	
@@ -25,7 +25,7 @@ public class ScenePanel extends JPanel implements ActionListener {
 
 	
 	public ScenePanel() {
-		setPreferredSize(SIZE.getScaledDimension());
+		setPreferredSize(SIZE.getDimension());
 		setFocusable(true);
 	}
 	

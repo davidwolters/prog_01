@@ -20,8 +20,8 @@ public class TableHoles extends Component {
 		Vector tablePos = gameObject.position;
 		int inset = Config.Table.HOLE_INSET;
 		Vector size = Config.Table.SIZE;
-		int w = size.getScaledX();
-		int h = size.getScaledY();
+		int w = size.x();
+		int h = size.y();
 		int d = Config.Table.HOLE_D;
 		holesPos[0] = Vector.add(tablePos, new Vector(inset, inset));
 		holesPos[1] = Vector.add(tablePos, new Vector(w/2 - (d/2), inset));
@@ -39,7 +39,7 @@ public class TableHoles extends Component {
 	public void paint(Graphics2D g) {
 		g.setColor(Config.Table.HOLE_COLOR);
 		for (Vector hp : holesPos) {
-			g.fillOval(hp.getScaledX(), hp.getScaledY(), Config.Table.HOLE_D, Config.Table.HOLE_D);
+			g.fillOval(hp.x(), hp.y(), Config.Table.HOLE_D, Config.Table.HOLE_D);
 		}
 	}
 }

@@ -18,8 +18,12 @@ public class PoolScene extends Scene {
 		super(panel);
 		GameObject table = GameObjectFactory.makeTable(); 
 		addGameObject(table);
-		GameObject[] balls = GameObjectFactory.makeBalls(table, 1);
+		GameObject[] balls = GameObjectFactory.makeBalls(table, Config.Ball.NUM_BALLS);
 		for (GameObject b : balls) addGameObject(b);
+		
+		addGameObject(GameObjectFactory.makeBallPhysicsHandler());
+		
+		init();
 	}
 	
 }

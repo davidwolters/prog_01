@@ -37,9 +37,12 @@ public class Config {
 		public static final Color STRIPE = Color.WHITE;
 		public static final Color WHITE = Color.WHITE;
 		public static final Color OUTLINE = Color.BLACK;
-		public static final int NUM_BALLS = 15;
-		public static final int SIZE = 20;
+		public static final int NUM_BALLS = 10;
+		public static final int SIZE = 30;
 		public static final int STRIPE_SIZE = 10;
 		public static final int OUTLINE_W = 2;
+		public static final int TABLE_FRICTION = 0;
+		public static final double SPEED_THRESHOLD = 20;
+		public static final double WEIGHT = 10;
 	}
 }

@@ -30,14 +30,5 @@ public abstract class Component {
 		gameObject.position = position;
 	}
 	
-	public Vector getGlobalPosition() {
-		return gameObject.getGlobalPosition();
-	}
-	
-	public void setGlobalPosition(Vector position) {
-		gameObject.setGlobalPosition(position);
-	}
-	
-	
 	public void onMessage(Message message, GameObject go) {}
 }

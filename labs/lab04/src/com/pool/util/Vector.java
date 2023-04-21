@@ -17,18 +17,18 @@ public class Vector {
 		this.y = y;
 	}
 	
-	
-	public int getScaledX() {
-		return (int)(this.x * Config.Window.SCALE);
+	public Dimension getDimension() {
+		return new Dimension((int) x, (int) y);
 	}
 	
-	public int getScaledY() {
-		return (int)(this.y * Config.Window.SCALE);
+	public int x() {
+		return (int) x;
 	}
 	
-	public Dimension getScaledDimension() {
-		return new Dimension(getScaledX(), getScaledY());
+	public int y() {
+		return (int) y;
 	}
+
 	
 	public Vector getEndFromAngle(double angle, double length) {
 		double xEnd = Math.cos(Math.toRadians(angle))*length;
@@ -36,20 +36,56 @@ public class Vector {
 		return new Vector(this.x + xEnd, this.y + yEnd);
 	}
 	
+	public static Vector norm(Vector v) {
+		return new Vector(v.x / length(v), v.y / length(v));
+	}
+	
+	public Vector norm() {
+		return norm(this);
+	}
+	
+	public Vector scale(double scale) {
+		return scale(this, scale);
+	}
+	
 	public static Vector scale(Vector v, double scale) {
 		return new Vector(v.x * scale, v.y * scale);
+	}
+	
+	public static double scalar(Vector a, Vector b) {
+		return a.x*b.x + a.y*b.y;
+	}
+	
+	public double scalar(Vector b) {
+		return scalar(this, b);
+	}
+	
+	public Vector add(Vector b) {
+		return add(this, b);
 	}
 	
 	public static Vector add(Vector a, Vector b) {
 		return new Vector(a.x + b.x, a.y + b.y);
 	}
 	
+	public Vector sub(Vector b) {
+		return sub(this, b);
+	}
+	
 	public static Vector sub(Vector a, Vector b) {
 		return add(a, scale(b, -1));
 	}
 	
-	public static int scaled(int d) {
-		return d * Config.Window.SCALE;
+	public double length() {
+		return length(this);
+	}
+
+	public static double length(Vector v) {
+		return Math.sqrt(v.x*v.x + v.y*v.y);
+	}
+	
+	public double distance(Vector b) {
+		return distance(this, b);
 	}
 	
 	public static double distance(Vector a, Vector b) {

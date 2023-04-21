@@ -17,9 +17,9 @@ public class TableSprite extends Component {
 
 	@Override
 	public void paint(Graphics2D g) {
-		Vector pos = getGlobalPosition();
+		Vector pos = gameObject.position;
 		g.setColor(Config.Table.COLOR);
-		g.fillRect(pos.getScaledX(), pos.getScaledY(), Vector.scaled(Config.Table.W), Vector.scaled(Config.Table.H));
+		g.fillRect(pos.x(), pos.y(), Config.Table.W, Config.Table.H);
 		
 	}
 

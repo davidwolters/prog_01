@@ -21,11 +21,16 @@ public abstract class Scene {
 		for (GameObject go : gameObjects) go.update();
 	}
 	
+	public void init() {
+		for (GameObject go : gameObjects) go.init();
+	}
+	
 	public void paint(Graphics2D g) {
 		for (GameObject go : gameObjects) go.paint(g);
 	}
 	
 	public void addGameObject(GameObject go) {
+		go.scene = this;
 		gameObjects.add(go);
 	}
 	
@@ -34,5 +39,14 @@ public abstract class Scene {
 			if (go.tag == tag) return go;
 		}
 		return null;
+	}
+	
+	public ArrayList<GameObject> findManyByTag(GameObjectTag tag) {
+		ArrayList<GameObject> objects = new ArrayList<>();
+		
+		for (GameObject go : gameObjects) 
+			if (go.tag == tag) objects.add(go);
+		
+		return objects;
 	}
 }
