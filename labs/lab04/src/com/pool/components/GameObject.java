@@ -78,4 +78,8 @@ public class GameObject {
 	public void move(Vector distance) {
 		this.position = Vector.add(this.position, distance);
 	}
+	
+	public void destroy() {
+		scene.removeGameObject(this);
+	}
 }

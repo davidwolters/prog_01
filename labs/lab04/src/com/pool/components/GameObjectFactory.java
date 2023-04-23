@@ -1,6 +1,7 @@
 package com.pool.components;
 
 import com.pool.components.ball.BallSprite;
+import com.pool.components.ball.BallWellnessBehaviour;
 import com.pool.components.table.TableBorder;
 import com.pool.components.table.TableHoles;
 import com.pool.components.table.TableSprite;
@@ -41,7 +42,8 @@ public class GameObjectFactory {
 	private static GameObject makeBall(int number, GameObject table) {
 		GameObject ball = new GameObject(GameObjectTag.BALL, Vector.ZERO);
 		ball.setParent(table);
-		ball.addComponent(new BallSprite(number));
+		ball.addComponent(new BallSprite());
+		ball.addComponent(new BallWellnessBehaviour(Math.random() < Config.Ball.INITIAL_SICK_CHANCE));
 		RigidBody rb = new RigidBody();
 		ball.addComponent(rb);
 		int max = 80;

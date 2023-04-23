@@ -26,17 +26,12 @@ public class Config {
 	}
 	
 	public static final class Ball {
-		public static final Color COLOR_1 = new Color(255, 255, 0);
-		public static final Color COLOR_2 = new Color(0, 0, 255);
-		public static final Color COLOR_3 = new Color(255, 0, 0);
-		public static final Color COLOR_4 = new Color(255, 0, 255);
-		public static final Color COLOR_5 = new Color(255, 125, 125);
-		public static final Color COLOR_6 = new Color(0, 255, 0);
-		public static final Color COLOR_7 = new Color(255, 0, 100);
-		public static final Color COLOR_8 = Color.BLACK;
-		public static final Color STRIPE = Color.WHITE;
-		public static final Color WHITE = Color.WHITE;
-		public static final Color OUTLINE = Color.BLACK;
+		public static final Color SICK_COLOR = new Color(255, 0, 0);
+		public static final Color WELL_COLOR = new Color(255, 255, 255);
+		public static final double INFECT_CHANCE = 0.2;
+		public static final double DIE_CHANCE = 0.02;
+		public static final double RECOVER_CHANCE = 0.05;
+		public static final double INITIAL_SICK_CHANCE = 0.2;
 		public static final int NUM_BALLS = 10;
 		public static final int SIZE = 30;
 		public static final int STRIPE_SIZE = 10;

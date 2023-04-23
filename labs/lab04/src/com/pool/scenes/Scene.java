@@ -18,20 +18,24 @@ public abstract class Scene {
 	}
 	
 	public void update() {
-		for (GameObject go : gameObjects) go.update();
+		for (int i= 0; i < gameObjects.size(); i++) gameObjects.get(i).update();
 	}
 	
 	public void init() {
-		for (GameObject go : gameObjects) go.init();
+		for (int i= 0; i < gameObjects.size(); i++) gameObjects.get(i).init();
 	}
 	
 	public void paint(Graphics2D g) {
-		for (GameObject go : gameObjects) go.paint(g);
+		for (int i= 0; i < gameObjects.size(); i++) gameObjects.get(i).paint(g);
 	}
 	
 	public void addGameObject(GameObject go) {
 		go.scene = this;
 		gameObjects.add(go);
+	}
+	
+	public void removeGameObject(GameObject obj) {
+		gameObjects.remove(obj);
 	}
 	
 	public GameObject findByTag(GameObjectTag tag) {
