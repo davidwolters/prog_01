@@ -8,13 +8,6 @@ import com.pool.util.Config;
 import com.pool.util.Vector;
 
 public class TableSprite extends Component {
-
-	@Override
-	public void update() {
-		// TODO Auto-generated method stub
-		
-	}
-
 	@Override
 	public void paint(Graphics2D g) {
 		Vector pos = gameObject.position;

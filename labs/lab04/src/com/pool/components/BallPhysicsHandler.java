@@ -10,19 +10,33 @@ import com.pool.util.GameObjectTag;
 import com.pool.util.Physics;
 import com.pool.util.Vector;
 
+/**
+ * Handles physics between balls and walls. Checks for collissions and uses
+ * Physcis to update speeds.
+ *
+ */
 public class BallPhysicsHandler extends Component {
-	
-	
+
+	/**
+	 * All balls on the table currently
+	 */
 	private ArrayList<GameObject> balls = new ArrayList();
-	
+
+	/**
+	 * Positions for walls.
+	 */
 	private double leftWallX, rightWallX, topWallY, bottomWallY;
-	
+
 	@Override
 	public void init() {
 		super.init();
+
+		// Find all balls on table.
 		balls = gameObject.scene.findManyByTag(GameObjectTag.BALL);
-		
-		TableBorder border = (TableBorder) gameObject.scene.findByTag(GameObjectTag.TABLE).getComponent(TableBorder.class);
+
+		// Get the TableBorder component, and use it to find wall positions.
+		TableBorder border = (TableBorder) gameObject.scene.findByTag(GameObjectTag.TABLE)
+				.getComponent(TableBorder.class);
 		leftWallX = border.getLeftWallX();
 		rightWallX = border.getRightWallX();
 		topWallY = border.getTopWallY();
@@ -31,50 +45,57 @@ public class BallPhysicsHandler extends Component {
 
 	@Override
 	public void update() {
+		// If balls have been removed, we need to update the list.
+		balls = gameObject.scene.findManyByTag(GameObjectTag.BALL);
 
+		// Check collissions.
 		checkBallToBallCollissions();
 		checkBallToWallCollissions();
 	}
-	
-	
+
 	private void checkBallToBallCollissions() {
+
+		// We store all collisions in a list, to avoid checking the same collision twice. Each arraylist entry is an array of two balls that have collided.
 		ArrayList<GameObject[]> collissions = new ArrayList();
+
 		for (GameObject ball : balls) {
 			for (GameObject other : balls) {
-				if (ball.equals(other)) continue;
-				if (hasCollided(ball, other, collissions)) continue;
+				if (ball.equals(other))
+					continue;
+				if (hasCollided(ball, other, collissions))
+					continue;
 				if (Physics.ballsCollide(ball, other)) {
-					collissions.add(new GameObject[] {ball, other});
+					collissions.add(new GameObject[] { ball, other });
 				}
 			}
 		}
-		handleCollissions(collissions);	
+		
+		// When we know all collisions on the table, we can handle them at the "same" time.
+		handleCollissions(collissions);
 	}
-	
+
 	private void checkBallToWallCollissions() {
 		for (GameObject ball : balls) {
+			// Retrieve the rigidbody component of the ball, and if there is a wall collision, reverse the appropriate speed axis.
 			RigidBody rb = (RigidBody) ball.getComponent(RigidBody.class);
-			if (Physics.leftWallCollission(ball.position.x, leftWallX, rb.speed.x)) 
+			if (Physics.leftWallCollission(ball.position.x, leftWallX, rb.speed.x))
 				rb.speed.x = -rb.speed.x;
-			else if (Physics.rightWallCollission(ball.position.x, rightWallX, rb.speed.x)) 
+			else if (Physics.rightWallCollission(ball.position.x, rightWallX, rb.speed.x))
 				rb.speed.x = -rb.speed.x;
-			else if (Physics.topWallCollission(ball.position.y, topWallY, rb.speed.y)) 
+			else if (Physics.topWallCollission(ball.position.y, topWallY, rb.speed.y))
 				rb.speed.y = -rb.speed.y;
-			else if (Physics.bottomWallCollission(ball.position.y, bottomWallY, rb.speed.y)) 
+			else if (Physics.bottomWallCollission(ball.position.y, bottomWallY, rb.speed.y))
 				rb.speed.y = -rb.speed.y;
 		}
 	}
-	
-	
-	@Override
-	public void paint(Graphics2D g) {
-		int s = Config.Ball.SIZE / 2;
-		for (GameObject ball : balls) {
-			g.setColor(Color.BLUE);
-			g.drawRect((int) ball.position.x - s, (int) ball.position.y - s, s*2, s*2);
-		}
-	}
-	
+
+	/**
+	 * 
+	 * @param a The first ball
+	 * @param b The second ball
+	 * @param collissions A list of all collisions recorded so far.
+	 * @return true if in the list of collissions, a and b exist in the same pair.
+	 */
 	private boolean hasCollided(GameObject a, GameObject b, ArrayList<GameObject[]> collissions) {
 		for (GameObject[] coll : collissions) {
 			if ((coll[0].equals(a) && coll[1].equals(b)) || (coll[0].equals(b) && coll[1].equals(a))) {
@@ -83,16 +104,41 @@ public class BallPhysicsHandler extends Component {
 		}
 		return false;
 	}
-	
+
+	/**
+	 * @return false if isMoving() for all balls returns false.
+	 */
+	public boolean areBallsMoving() {
+		for (int i = 0; i < balls.size(); i++) {
+			RigidBody rb = (RigidBody) balls.get(i).getComponent(RigidBody.class);
+			if (rb.isMoving()) {
+				System.out.println("is moving");
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 *  Use physics to calculate the new momentums for each collission pair.
+	 */
 	public void handleCollissions(ArrayList<GameObject[]> collissions) {
 		for (GameObject[] coll : collissions) {
-			RigidBody a = (RigidBody) coll[0].getComponent(RigidBody.class);
-			RigidBody b = (RigidBody) coll[1].getComponent(RigidBody.class);
-		
-			Vector aMom = Physics.getNewMomentum(a.speed, b.speed, coll[0].position, coll[1].position, 1);
-			Vector bMom = Physics.getNewMomentum(b.speed, a.speed, coll[1].position, coll[0].position, 1);
-			a.setMomentum(aMom);
-			b.setMomentum(bMom);
+			GameObject go1 = coll[0];
+			GameObject go2 = coll[1];
+			RigidBody rb1 = (RigidBody) go1.getComponent(RigidBody.class);
+			RigidBody rb2 = (RigidBody) go2.getComponent(RigidBody.class);
+
+			Vector aMom = Physics.getNewMomentum(rb1.speed, rb2.speed, go1.position, go2.position);
+			Vector bMom = Physics.getNewMomentum(rb2.speed, rb1.speed, go2.position, go1.position);
+			rb1.setMomentum(aMom);
+			rb2.setMomentum(bMom);
+			
+			Vector bToA = go1.position.sub(go2.position).norm();
+
+			double dist = Config.Ball.SIZE - go1.position.distance(go2.position);
+			go1.move(bToA.scale(dist));
+
 		}
 	}
 }

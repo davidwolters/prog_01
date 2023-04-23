@@ -3,41 +3,54 @@ package com.pool.components;
 import com.pool.util.Config;
 import com.pool.util.Vector;
 
+
+/**
+ * Component attached to objects that should move according to physics.
+ */
+
 public class RigidBody extends Component {
 
 	
-	// Expressed in px/s^2;
-	public Vector acceleration = Vector.ZERO;
 	// Expressed in px/s;
 	public Vector speed = Vector.ZERO;
-	public boolean fixed = false;
 	
 	@Override
 	public void update() {
 		
+		// If we aren't moving fast enough, set speed to 0.
 		if (!isMoving()) {
 			stop();
 			return;
 		}
-
-		speed = Vector.add(speed, Vector.scale(acceleration, 1/(double)Config.FPS));
-		gameObject.move(Vector.scale(speed, 1/(double)Config.FPS));
-//		System.out.println(speed +  " (" + speed.length() + ")" + ", " + acceleration);
 		
+		// Since speed is expressed as px/s, we need to divide by FPS to know how far to move this frame.
+		gameObject.move(Vector.scale(speed, 1/(double)Config.FPS));
+		
+		// Same here, since TABLE_FRICTIOn is also px/s^2
 		double friction = Config.Ball.TABLE_FRICTION / (double)Config.FPS;
-		acceleration = acceleration.sub(speed.norm().scale(friction));
+		speed = speed.sub(speed.norm().scale(friction));
 	}
 	
 	
+	/**
+	 * @return true if speed is above a certain threshold.
+	 */
 	public boolean isMoving() {
 		return speed.length() > Config.Ball.SPEED_THRESHOLD / (double)Config.FPS;
 	}
 	
+	/**
+	 * Set speed to (0,0)
+	 */
 	public void stop() {
-		acceleration = Vector.ZERO;
 		speed = Vector.ZERO;
 	}
 	
+	
+	/**
+	 * Used for impulse calculations.
+	 * @param momentum Speed vector with mass.
+	 */
 	public void setMomentum(Vector momentum) {
 		this.speed = momentum.scale(1/Config.Ball.WEIGHT);
 	}

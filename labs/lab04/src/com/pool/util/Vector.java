@@ -1,12 +1,12 @@
 package com.pool.util;
 
 import java.awt.Dimension;
+import java.awt.event.MouseEvent;
 
 import com.pool.ui.ScenePanel;
 
 
 public class Vector {
-	
 	
 	public static final Vector ZERO = new Vector(0, 0);
 	
@@ -15,6 +15,11 @@ public class Vector {
 	public Vector(double x, double y) {
 		this.x = x;
 		this.y = y;
+	}
+	
+	public Vector(MouseEvent e) {
+		x = e.getX();
+		y = e.getY();
 	}
 	
 	public Dimension getDimension() {
@@ -35,7 +40,8 @@ public class Vector {
 		double yEnd = Math.sin(Math.toRadians(angle))*length;
 		return new Vector(this.x + xEnd, this.y + yEnd);
 	}
-	
+
+
 	public static Vector norm(Vector v) {
 		return new Vector(v.x / length(v), v.y / length(v));
 	}
@@ -98,7 +104,6 @@ public class Vector {
 	public static Vector offsetCenter(Vector dim) {
 		return sub(ScenePanel.CENTER, scale(dim, .5));
 	}
-	
 	
 	@Override
 	public String toString() {

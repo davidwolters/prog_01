@@ -13,9 +13,11 @@ public class PoolFrame extends JFrame {
 	
 	private void initWindow() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 		ScenePanel panel  = new ScenePanel();
 		panel.setScene(new PoolScene(panel));
 		add(panel);
+
 		pack();
 		setLocationRelativeTo(null);
 		setVisible(true);

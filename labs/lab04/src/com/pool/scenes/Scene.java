@@ -1,9 +1,12 @@
 package com.pool.scenes;
 
 import java.awt.Graphics2D;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
 import com.pool.components.GameObject;
+import com.pool.components.Component;
 import com.pool.ui.ScenePanel;
 import com.pool.util.GameObjectTag;
 
@@ -32,6 +35,10 @@ public abstract class Scene {
 	public void addGameObject(GameObject go) {
 		go.scene = this;
 		gameObjects.add(go);
+	}
+	
+	public void addMouseListener(Component mouseListener) {
+		manager.mouseListeners.add(mouseListener);
 	}
 	
 	public GameObject findByTag(GameObjectTag tag) {
