@@ -41,7 +41,7 @@ public class Config {
 		public static final int SIZE = 30;
 		public static final int STRIPE_SIZE = 10;
 		public static final int OUTLINE_W = 2;
-		public static final int TABLE_FRICTION = 50;
+		public static final int TABLE_FRICTION = 30;
 		public static final double SPEED_THRESHOLD = 20;
 		public static final double WEIGHT = 10;
 		public static final double AIM_MULTIPLIER = 2;

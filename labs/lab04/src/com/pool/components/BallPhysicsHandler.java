@@ -8,6 +8,7 @@ import com.pool.components.table.TableBorder;
 import com.pool.util.Config;
 import com.pool.util.GameObjectTag;
 import com.pool.util.Physics;
+import com.pool.components.ball.*;
 import com.pool.util.Vector;
 
 /**
@@ -60,6 +61,14 @@ public class BallPhysicsHandler extends Component {
 
 		for (GameObject ball : balls) {
 			for (GameObject other : balls) {
+
+				BallSprite b1 = (BallSprite) ball.getComponent(BallSprite.class);
+				BallSprite b2 = (BallSprite) other.getComponent(BallSprite.class);
+
+				if (!Physics.ballsCollide(ball, other)) {
+					b1.isColliding = false;
+					b2.isColliding = false;
+				}
 				if (ball.equals(other))
 					continue;
 				if (hasCollided(ball, other, collissions))
@@ -138,6 +147,11 @@ public class BallPhysicsHandler extends Component {
 
 			double dist = Config.Ball.SIZE - go1.position.distance(go2.position);
 			go1.move(bToA.scale(dist));
+			
+			BallSprite b1 = (BallSprite) go1.getComponent(BallSprite.class);
+			BallSprite b2 = (BallSprite) go2.getComponent(BallSprite.class);
+			b1.isColliding = true;
+			b2.isColliding = true;
 
 		}
 	}

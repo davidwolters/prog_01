@@ -13,10 +13,11 @@ import com.pool.util.Vector;
 public class BallSprite extends Component {
 	
 	
-	boolean isStriped;
-	int number;
+	private boolean isStriped;
+	public boolean isColliding;
+	private int number;
 	
-	Color color;
+	private Color color;
 	
 	
 	public BallSprite(int number) {
@@ -37,6 +38,7 @@ public class BallSprite extends Component {
 		int y = (int)(pos.y() - r);
 		
 		g.setColor(color);
+		if (isColliding) g.setColor(Color.MAGENTA);
 		g.fillOval(x, y, (int)r*2, (int)r*2);
 		if (isStriped) {
 			int stripeR = Config.Ball.STRIPE_SIZE / 2;

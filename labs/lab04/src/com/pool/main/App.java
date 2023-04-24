@@ -15,6 +15,6 @@ public class App {
 
    public static void main(String[] args) {
 
-       PoolFrame frame = new PoolFrame("No collisions!");
+       PoolFrame frame = new PoolFrame("For 3");
    }
 }
