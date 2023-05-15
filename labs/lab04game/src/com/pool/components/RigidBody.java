@@ -1,5 +1,6 @@
 package com.pool.components;
 
+import com.pool.components.ball.BallSprite;
 import com.pool.util.Config;
 import com.pool.util.Vector;
 
@@ -23,6 +24,9 @@ public class RigidBody extends Component {
 			stop();
 			return;
 		}
+		
+		BallSprite bs = (BallSprite) gameObject.getComponent(BallSprite.class);
+		if (bs.number == 0) System.out.println(speed.length());
 		
 		// Since speed is expressed as px/s, we need to divide by FPS to know how far to move this frame.
 		gameObject.move(Vector.scale(speed, 1/(double)Config.FPS));

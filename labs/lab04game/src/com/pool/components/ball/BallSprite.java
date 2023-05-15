@@ -14,7 +14,7 @@ public class BallSprite extends Component {
 	
 	
 	private boolean isStriped;
-	private int number;
+	public int number;
 	
 	private Color color;
 	

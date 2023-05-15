@@ -66,6 +66,7 @@ public class BallAimBehaviour extends Component {
 	}
 	
 	private boolean canStartAim() {
+		System.out.println(canAim + ", " + physics.areBallsMoving());
 		return canAim && !physics.areBallsMoving();
 	}
 	

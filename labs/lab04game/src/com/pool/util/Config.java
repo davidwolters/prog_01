@@ -47,8 +47,8 @@ public class Config {
 		public static final int SIZE = 30;
 		public static final int STRIPE_SIZE = 20;
 		public static final int OUTLINE_W = 2;
-		public static final int TABLE_FRICTION = 100;
-		public static final double SPEED_THRESHOLD = 20;
+		public static final int TABLE_FRICTION = 80;
+		public static final double SPEED_THRESHOLD = 100;
 		public static final double WEIGHT = 10;
 		public static final double AIM_MULTIPLIER = 2;
 		public static final Color AIM_COLOR = Color.BLACK;

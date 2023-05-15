@@ -136,6 +136,8 @@ public class BallPhysicsHandler extends Component {
 		for (int i = 0; i < balls.size(); i++) {
 			RigidBody rb = (RigidBody) balls.get(i).getComponent(RigidBody.class);
 			if (rb.isMoving()) {
+				BallSprite bs = (BallSprite) balls.get(i).getComponent(BallSprite.class);
+				System.out.println(bs.number);
 				return true;
 			}
 		}
